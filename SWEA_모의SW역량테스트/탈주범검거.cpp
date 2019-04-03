@@ -1,4 +1,6 @@
-#include <iostream>
+#
+
+/*#include <iostream>
 #include <string.h>
 #define MAX_SIZE 51
 
@@ -70,3 +72,4 @@ int main() {
 	}
 	return 0;
 }
+*/
