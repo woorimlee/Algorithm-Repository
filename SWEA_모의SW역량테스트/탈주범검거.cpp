@@ -1,75 +1,89 @@
-#
-
-/*#include <iostream>
-#include <string.h>
-#define MAX_SIZE 51
+#include <iostream>
+#include <memory.h>
 
 using namespace std;
 
-int map[MAX_SIZE][MAX_SIZE];
-bool visit[MAX_SIZE][MAX_SIZE];
-bool ret[MAX_SIZE][MAX_SIZE];
-int dx[] = { 0, 1, 0, -1 };
-int dy[] = { -1, 0, 1, 0 };
+int T;
+//지하 터널 지도의 세로 크기 N, 가로 크기 M, 맨홀 뚜껑이 위치한장소의 세로 위치 R, 가로 위치 C, 그리고 탈출 후 소요된 시간 L
+int N, M, R, C, L;
+int direct[4][2] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
+bool visited[51][51] = { false, };
+//도둑이 있을 수 있는 위치
+bool location[51][51];
+int map[51][51];
 
-void dfs(int m, int n, int x, int y, int l, int d) {
-	if (d == l) return;
+void dfs(int X, int Y, int time);
 
-	ret[y][x] = 1;
-	int cur = map[y][x];
+int main(void) {
+	cin >> T;
+	int answer;
 
-	for (int i = 0; i < 4; i++) {
-		if (i == 0 && (cur == 3 || cur == 5 || cur == 6)) continue;
-		if (i == 1 && (cur == 2 || cur == 6 || cur == 7)) continue;
-		if (i == 2 && (cur == 3 || cur == 4 || cur == 7))continue;
-		if (i == 3 && (cur == 2 || cur == 4 || cur == 5))continue;
-
-		int nx = x + dx[i];
-		int ny = y + dy[i];
-
-		int next = map[ny][nx];
-
-		if (nx < 0 || ny < 0 || nx >= m || ny >= n)continue;
-		else if (map[ny][nx] == 0 || visit[ny][nx]) continue;
-
-		if (i == 0 && (next == 3 || next == 4 || next == 7)) continue;
-		if (i == 1 && (next == 2 || next == 4 || next == 5)) continue;
-		if (i == 2 && (next == 3 || next == 5 || next == 6)) continue;
-		if (i == 3 && (next == 2 || next == 6 || next == 7)) continue;
-
-		visit[y][x] = 1;
-		dfs(m, n, nx, ny, l, d + 1);
-		visit[y][x] = 0;
-	}
-}
-
-int main() {
-	int t;
-	cin >> t;
-	for (int i = 1; i <= t; i++) {
-		int n, m, r, c, l;
-		cin >> n >> m >> r >> c >> l;
-
+	for (int i = 1; i <= T; i++) {
+		//테스트 케이스마다 초기화
+		memset(location, false, sizeof(location));
 		memset(map, 0, sizeof(map));
-		memset(ret, false, sizeof(ret));
-
-		for (int j = 0; j < n; j++) {
-			for (int k = 0; k < m; k++) {
-				cin >> map[j][k];
+		answer = 0;
+		cin >> N >> M >> R >> C >> L;
+		
+		for (int y = 0; y < N; y++) {
+			for (int x = 0; x < M; x++) {
+				cin >> map[y][x];
 			}
 		}
 
-		dfs(m, n, c, r, l, 0);
-
-		int res = 0;
-		for (int j = 0; j < n; j++) {
-			for (int k = 0; k < m; k++) {
-				if (ret[j][k]) res++;
+		dfs(C, R, 0);
+		//이동 가능한 위치 검사
+		for (int y = 0; y < N; y++) {
+			for (int x = 0; x < M; x++) {
+				if (location[y][x])
+					answer++;
 			}
 		}
 
-		cout << '#' << i << ' ' << res << '\n';
+		cout << "#" << i  << " " << answer << "\n";
 	}
+
 	return 0;
 }
-*/
+
+void dfs(int X, int Y, int time) {
+	//베이스 컨디션
+	if (time == L)
+		return;
+
+	location[Y][X] = true;
+	int cur = map[Y][X]; //cur = current
+	int next;
+	int nx, ny;
+
+	//자기 좌표에서 상 우 하 좌 검사
+	for (int i = 0; i < 4; i++) {
+		nx = X + direct[i][0];
+		ny = Y + direct[i][1];
+		next = map[ny][nx];
+
+		//갈 곳에 파이프가 없고, 이미 방문한 곳이고, 지도 범위 벗어나면
+		if (map[ny][nx] == 0) continue;
+		else if (visited[ny][nx]) continue;
+		else if (nx < 0 || nx >= M || ny < 0 || ny >= N) continue;
+
+		//자기 파이프 형태가 위로 이동할 수 있는게 아니라면
+		if (i == 0 && (cur == 3 || cur == 5 || cur == 6)) continue;
+		//우
+		else if (i == 1 && (cur == 2 || cur == 6 || cur == 7)) continue;
+		//하
+		else if (i == 2 && (cur == 3 || cur == 4 || cur == 7)) continue;
+		//좌
+		else if (i == 3 && (cur == 2 || cur == 4 || cur == 5)) continue;
+
+		//다음 파이프 형태가 연결이 불가능한 형태라면
+		if (i == 0 && (next == 3 || next == 4 || next == 7)) continue;
+		else if (i == 1 && (next == 2 || next == 4 || next == 5)) continue;
+		else if (i == 2 && (next == 3 || next == 5 || next == 6)) continue;
+		else if (i == 3 && (next == 2 || next == 6 || next == 7)) continue;
+
+		visited[Y][X] = true;
+		dfs(nx, ny, time + 1);
+		visited[Y][X] = false;
+	}
+}
