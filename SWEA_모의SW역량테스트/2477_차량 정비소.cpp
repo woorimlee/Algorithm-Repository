@@ -54,7 +54,7 @@ void findCustomer(vector <customer> &cus, vector <int> a, vector <int> b) {
 			//만약 접수원 처리 시간이 0이 됐다면 업무를 다 처리했다는 뜻.
 			//접수처는 자동으로 비어있는 상태가 되니(0의 값), 고객만 정비 창구 큐에 넣어줌.
 			if (receptionINFO[i].second == 0) {
-				endCount++;
+				//endCount++;
 			}
 		}
 
