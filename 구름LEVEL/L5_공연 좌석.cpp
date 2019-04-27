@@ -1,9 +1,14 @@
 #include <iostream>
 using namespace std;
-int N, M, answer;
-int arr[40] = { 0, };
+int N, M, answer = 1;
+int arr[4] = { 0, };
 
-int fib(int num);
+//fib 계산할 때 + 1 해서 넣자.
+int fib(int num) {
+	if (num == 1 || num == 0)
+		return num;
+	return fib(num - 1) + fib(num - 2);
+}
 
 int main() {
 	cin >> N >> M;
@@ -18,12 +23,15 @@ int main() {
 	for (int i = 0; i < N; i++) {
 		if (arr[i] == -1) { // VIP석
 			//계산 & 초기화
-			//to do
+			answer *= fib(length + 1);
+			length = 0;
 		}
 		else
 			length++;
 	}
+
 	if (length != 0)
-		fib(length);
+		answer *= fib(length + 1);
+
 	cout << answer;
 }
