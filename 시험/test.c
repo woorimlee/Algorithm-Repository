@@ -1,36 +1,35 @@
-#include <stdio.h>
-#include <io.h>
-#include <fcntl.h>
-#include <errno.h>
-#include <string.h>
-#include <stdlib.h>
-
 void main(void)
 {
 	int fd;
-	int i;
+	int i, count;
 	char  buf[16];
-	int rd;
-
-	errno_t errno = _sopen_s(&fd, "./kw.gif", O_RDONLY, _SH_DENYNO, 0);
-
+	ssize_t rd;
+	int count = 0;
+	fd = open("./kw.gif", O_RDONLY);
 	if (fd == -1) {
 		perror("open");
 		exit(0);
 	}
 
-	while (0 < (rd = _read(fd, buf, 16))) {
+	while (0 < (rd = read(fd, buf, 16))) {
+		count = 0;
 		for (i = 0; i < 16; i++) {
-				printf("%x", buf[i]);
-				//두 번마다 띄어쓰기 하나 (하렴 하고 말람 말고)
-
+			printf("%x", buf[i]);
+			count++;
+			if (count == 2) {
+				printf(" ");
+				count = 0;
 			}
-		//줄바꿈
-		//if buf[i]가 아스키코드로 문자 표현 가능한거면 (33~ 127인가)
-		//	printf("%c", buf[i]);
+		}
+		printf("   ");
+		for (i = 0; i < 16; i++) {
+			if (buf[i] > 32 && buf[i] < 127) {
+				printf("%c", buf[i]);
+			}
 			else {
 				printf(".");
 			}
 		}
+		printf("\n");
 	}
 }
