@@ -1,35 +1,40 @@
-void main(void)
+#include <stdio.h>
+
+#include <stdlib.h>
+
+
+
+int main()
+
 {
-	int fd;
-	int i, count;
-	char  buf[16];
-	ssize_t rd;
-	int count = 0;
-	fd = open("./kw.gif", O_RDONLY);
-	if (fd == -1) {
-		perror("open");
-		exit(0);
+
+	int a = 0;
+
+	int d = 0;
+
+	int n = 0;
+
+	int x;
+
+	int y;
+
+	scanf_s("&d &d &d", &a, &d, &n);
+	
+	y = 1;
+
+	a = 1;
+	d = 3; 
+	n = 5;
+
+	for (x = a; x <= n; x++) {
+
+		y = y + d;
+
 	}
 
-	while (0 < (rd = read(fd, buf, 16))) {
-		count = 0;
-		for (i = 0; i < 16; i++) {
-			printf("%x", buf[i]);
-			count++;
-			if (count == 2) {
-				printf(" ");
-				count = 0;
-			}
-		}
-		printf("   ");
-		for (i = 0; i < 16; i++) {
-			if (buf[i] > 32 && buf[i] < 127) {
-				printf("%c", buf[i]);
-			}
-			else {
-				printf(".");
-			}
-		}
-		printf("\n");
-	}
+	printf_s("%d", y);
+
+	return 0;
+
 }
+
