@@ -4,6 +4,7 @@
 *checkpoints*
 
 *.(Trying)*
+*.sln*
 
 #vcxproj
 *.vcxproj*
