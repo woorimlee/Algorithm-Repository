@@ -18,5 +18,13 @@ int main()
 	}
 	printf("\n");
 
+<<<<<<< HEAD
 \	return 0;
 }
+=======
+	return 0;
+}
+
+
+
+>>>>>>> 2da2f10d8d4c14472c5ef9ee603438c381dc133e
