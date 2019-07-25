@@ -1,30 +1,31 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include<time.h>
+#include <iostream>
+using namespace std;
 
-int main()
+void SwapIntPtr(int** p1, int** p2)
 {
-	int n;
-	int arr[10];
-	int seed;
-	scanf_s("%d %d", &n, &seed);
-	srand(seed);	//seed°ª »ç¿ë
-
-	for (int i = 0; i < 10; i++) {
-		arr[i] = rand() % n;
-	}
-	for (int i = 0; i < 10; i++) {
-		printf("%d ", arr[i]);
-	}
-	printf("\n");
-
-<<<<<<< HEAD
-\	return 0;
+	int *temp = *p1;
+	*p1 = *p2;
+	*p2 = temp;
 }
-=======
+void SwapIntPtr2(int **p1, int **p2);
+
+int main(void) {
+
+	int num1 = 10, num2 = 20;
+	int* ptr1, * ptr2;
+	ptr1 = &num1, ptr2 = &num2;
+	cout << "ptr1 : " << &num1 << " ptr2 : " << &num2 << endl;
+	cout << "ptr1 : " << ptr1 << " ptr2 : " << ptr2 << endl;
+	SwapIntPtr(&ptr1, &ptr2);
+	cout << "ptr1 : " << ptr1 << " ptr2 : " << ptr2 << endl;
+	cout << "ptr1 : " << *ptr1 << " ptr2 : " << *ptr2 << endl;
 	return 0;
+ }
+
+void SwapIntPtr2(int** p1, int** p2)
+{
+	int temp = **p1;
+	**p1 = **p2;
+	**p2 = temp;
 }
-
-
-
->>>>>>> 2da2f10d8d4c14472c5ef9ee603438c381dc133e
