@@ -9,26 +9,8 @@ using namespace std;
 
 struct Node {
 	int data = 0;
-	Node* next = nullptr;
-	Node(int num, Node* tnext) : data{ num }, next{ tnext } {};
-};
-
-int main(void) {
-	Node* head = nullptr;
-
-	int n, k;
-	cin >> n;
-	Node* temp = nullptr;
-	//연결리스트는 헤드에서 -> 다음 노드를 가리키고 -> 다음 노드를 가리키고 이런 형식으로 이뤄짐
-	for (int i = 0; i < n; i++) {
-		//새 노드를 만들어서 헤드가 그 노드를 가리키거나
-		//새 노드가 새로운 헤드가 되거나
-		cin >> k;
-		temp = new Node(k, head);
-		head = temp;
-		
-	}
-
+}
+int main() {
 
 	return 0;
 }
