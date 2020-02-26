@@ -3,14 +3,12 @@
 using namespace std;
 
 /*
-Ex. Linked List : 1 -> 3 -> 5 -> 1 -> 4 -> 9 -> 2 -> nullptr,    
+Ex. Linked List : 1 -> 3 -> 5 -> 1 -> 4 -> 9 -> 2 -> nullptr,
 	X = 5;
-
-	Node with data less than X is linked to Linked List A. 
+	Node with data less than X is linked to Linked List A.
 	1 -> 3 -> 1 -> 4 -> 2
 	Node with data greater than X is linked to Linked List B.
 	5 -> 9
-
 	Now, the end of the Linked List A points B.
 	1 -> 3 -> 1 -> 4 -> 2 -> 5 -> 9 -> nullptr;
 	Done.
@@ -18,7 +16,7 @@ Ex. Linked List : 1 -> 3 -> 5 -> 1 -> 4 -> 9 -> 2 -> nullptr,
 
 struct Node {
 	int data = 0;
-	Node * next = nullptr;
+	Node* next = nullptr;
 	Node(int d) : data{ d }, next{ nullptr } {};
 };
 
@@ -29,14 +27,14 @@ int getRandomInt(int min, int max) {
 	return range(mt);
 }
 
-void insertNode(Node *& head, int x) {
-	Node * cur = new Node(x);
+void insertNode(Node*& head, int x) {
+	Node* cur = new Node(x);
 	cur->next = head;
 	head = cur;
 	return;
 }
 
-void printList(Node *head) {
+void printList(Node* head) {
 	while (head != nullptr) {
 		cout << head->data << " -> ";
 		head = head->next;
@@ -45,11 +43,11 @@ void printList(Node *head) {
 	return;
 }
 
-void splitList(Node *head, int x) {
-	Node * LessHead = nullptr; //Data of Node is lesser than x.
-	Node * LessTail = nullptr;
-	Node * GreaterHead = nullptr; //Data of Node is greater than x.
-	Node * GreaterTail = nullptr;
+void splitList(Node *& head, int x) {
+	Node* LessHead = nullptr; //Data of Node is lesser than x.
+	Node* LessTail = nullptr;
+	Node* GreaterHead = nullptr; //Data of Node is greater than x.
+	Node* GreaterTail = nullptr;
 
 	while (head != nullptr) {
 		if (head->data < x) {
@@ -74,19 +72,19 @@ void splitList(Node *head, int x) {
 		}
 		head = head->next;
 	}
-	GreaterTail->next = nullptr;
 	LessTail->next = GreaterHead;
+	GreaterTail->next = nullptr;
+	head = LessHead;
 	return;
 }
 
 int main(void) {
-	Node * head = nullptr;
+	Node* head = nullptr;
 	for (int i = 0; i < 10; i++) {
 		insertNode(head, getRandomInt(0, 10));
 	}
 
 	printList(head);
-
 	int x = 5;
 	splitList(head, x);
 
