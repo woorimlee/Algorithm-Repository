@@ -3,44 +3,58 @@
 
 using namespace std;
 
+int N, K;
+bool visited[100001] = { false };
+//수빈이의 위치 값, 걸린 시간이 들어있음
+queue <pair<int, int> > sb;
+
 int main(void) {
-	int N, K;
-	int dist[200001] = { 0, };
-	queue <int> q;
+	
 	cin >> N >> K;
-	//N에 수빈이 위치 K에 동생 위치
 
-	q.push(N);
-	dist[N] = 1;
-
-	while (!q.empty()) {
-		int c_p = q.front(); q.pop(); // current_position
-		if (c_p == K) {
-			cout << dist[c_p] - 1;
-			return 1;
+	sb.push({ N, 0 });
+	visited[N] = true;
+	pair <int, int> cp; //current position
+	while (!sb.empty()) {
+		cp = sb.front();
+		sb.pop(); 
+		
+		//수빈이의 위치와 동생의 위치가 같다면
+		if (cp.first == K) {
+			cout << cp.second;
+			return 0;
 		}
 
-		if ((c_p - 1) >= 0) {
-			if (dist[c_p - 1] == 0) {
-				q.push(c_p - 1);
-				dist[c_p - 1] = dist[c_p] + 1;
-			}
-		}
-
-		if ((c_p + 1) < 200000) {
-			if (dist[c_p + 1] == 0) {
-				q.push(c_p + 1);
-				dist[c_p + 1] = dist[c_p] + 1;
+		//bfs로 탐색할 종류 
+		//1) 현재위치 -1
+		//2) 현재위치 +1
+		//3) 현재위치 *2
+		
+		//1)
+		//현재 위치 - 1이 0보다는 커야함
+		if (cp.first - 1 >= 0) {
+			if ((!visited[cp.first - 1])) {
+				sb.push({ cp.first - 1, cp.second + 1 });
+				visited[cp.first - 1] = true;
 			}
 		}
 		
-		if ((c_p * 2) < 200000) {
-			if (dist[c_p * 2] == 0) {
-				q.push(c_p * 2);
-				dist[c_p * 2] = dist[c_p] + 1;
+		//2)
+		if (cp.first + 1 < 100001) {
+			if (!visited[cp.first + 1]) {
+				sb.push({ cp.first + 1, cp.second + 1 });
+				visited[cp.first + 1] = true;
+			}
+		}
+
+		//3)
+		//위치가 100000 이상인 건 아예 처리하지 않아도 되는 문제인듯 함
+		if (cp.first * 2 < 100001) {
+			if (!visited[cp.first * 2]) {
+				sb.push({ cp.first * 2, cp.second + 1 });
+				visited[cp.first * 2] = true;
 			}
 		}
 	}
 	return 0;
-
 }
