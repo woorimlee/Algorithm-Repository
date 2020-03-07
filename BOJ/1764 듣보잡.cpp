@@ -1,59 +1,36 @@
-#include<iostream>
-#include<stack>
-#include<string>
-
+#include <iostream>
+#include <string>
+#include <map>
 using namespace std;
 
-int main(void) {
-	int n;
-	cin >> n;
-
-	stack<int> st;
+int N, M, ans = 0;
+//bool 값이 true면 듣도 못하거나 보도 못한 사람 (둘 중 하나)
+//bool 값이 false면 듣보잡
+//map은 기본 false로 초기화
+map <string, bool> emeqh; //듣보 = emeqh
+int main() {
+	cin >> N >> M;
 	string str;
-
-	for (int i = 0; i < n; i++) {
+	for (int i = 0; i < N + M; i++) {
 		cin >> str;
-
-		if (str == "push") {
-			int num;
-			cin >> num;
-			st.push(num);
+		//듣도 못한 사람 혹은 보도 못한 사람으로
+		//이름이 한 번 주어지면 true로 바꿈
+		if (emeqh[str] == false) {
+			emeqh[str] = true;
 		}
-
-		else if (str == "pop") {
-			if (!st.empty()) {
-				cout << st.top() << endl;
-				st.pop();
-			}
-			else { //st.empty()가 참인 경우겠지
-				cout << "-1" << endl;
-			}
-		}
-
-		else if (str == "size") {
-			cout << st.size() << endl;
-		}
-
-		else if (str == "empty") {
-			if (st.empty()) {
-				//st.empty() 스택이 비어있을 때 1을 반환하고
-				//아니면 0을 반환해.
-				cout << "1" << endl;
-			}
-			else {
-				cout << "0" << endl;
-			}
-		}
-
-		else if (str == "top") {
-			//st.top();
-			if (st.empty()) {
-				cout << "-1" << endl;
-			}
-			else {
-				cout << st.top() << endl;
-			}
+		//듣도 못한 사람 & 보도 못한 사람
+		//명단으로 두 번 주어진 경우에 해당 
+		else {
+			emeqh[str] = false;
+			ans++;
 		}
 	}
+	cout << ans << "\n";
+	for (auto it : emeqh) {
+		if (it.second == false) {
+			cout << it.first << "\n";
+		}
+	}
+
 	return 0;
 }
