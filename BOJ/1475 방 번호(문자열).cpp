@@ -22,6 +22,7 @@ int main() {
 	// 99999 -> 6 세 개, 9 두 개 -> 총 세 세트를 계산하기 위한 식
 	int temp_max = (room_num[6] + room_num[9] + 1) / 2;
 	for (int i = 0; i <= 9; i++) {
+		//최대 필요한 세트 갯수 파악
 		(i != 6 && i != 9) ? max_num = max(max_num, room_num[i]) : max_num = max(max_num,temp_max);
 	}
 	cout << max_num;
