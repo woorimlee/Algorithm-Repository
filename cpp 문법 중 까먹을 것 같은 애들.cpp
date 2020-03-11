@@ -6,6 +6,17 @@
 
 using namespace std;
 
+/*
+용어
+Referential transparency : 참조적 투명성. 함수의 반환 값이 그 입력 값만으로 결정. 
+	메모이제이션 기법을 사용하려면 참조적 투명함수로 구현되어야 함.
+	ex) int cnt = 0;
+		int count() {
+			return counter++;
+		}
+	이런 것은 참조적 투명함수가 아님. 실행할 때마다 cnt 값이 달라짐.
+*/
+
 namespace part1 {
 	//기본 int형, 값을 따로 지정해주지 않으면 0부터 채워짐
 	enum Cafe { SB, CB, E, TS, CafeCount}; //열거형 개수를 세기 위해 
