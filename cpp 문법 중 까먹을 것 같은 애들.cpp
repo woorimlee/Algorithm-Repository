@@ -1,8 +1,9 @@
 //전문가를 위한 C++(개정4판) 
-//75쪽
+//80쪽 벡터
 
 #include <iostream>
 #include <string>
+#include <array>
 
 using namespace std;
 
@@ -52,8 +53,41 @@ namespace part1 {
 				cout << "중저가\n";
 				break;
 			}
-
 	}
+
+	//함수마다 내부적으로 __func__라는 로컬 변수가 있고, 함수 이름을 갖고 있음
+	void now_func_name() {
+		cout << "현재 함수 이름 : " << __func__ << "\n";
+		return;
+	}
+
+	//c++17부터 <array> 헤더의 std 공간에서 제공하는 size함수 사용 가능
+	void check_arr_size() {
+		int arr[3];
+		cout << "size를 이용한 배열 크기 확인 : " << size(arr) << "\n";
+	}
+	//array를 c스타일 배열 보다 추천함
+	//1. 내장 함수
+	//2. 포인터 관련된 인덱스 실수
+	void use_array() {
+		array<int, 5> arr = { 5, 2, 1 };
+		cout << "arr size : " << arr.size();
+		cout << "\nfront : " << arr.front() << " back : " << arr.back() << "\n";
+		array<int, 5> arr2 = { 0 };
+		arr2.fill(-1);
+		cout << "arr2 : ";
+		for (auto it : arr2) {
+			cout << it << " ";
+		}
+		cout << "\nswaped arr & arr2 : ";
+		arr.swap(arr2);
+		for (int i = 0; i < arr.size(); i++) {
+			cout << arr[i] << " " << arr2[i] << " ";
+		}
+		cout << "\n";
+		return;
+	}
+	
 }
 
 int main() {
@@ -62,5 +96,9 @@ int main() {
 	for (part1::Cafe i = part1::Cafe::SB; i < part1::Cafe::CafeCount; i = (part1::Cafe)(i+1)) {
 		part1::switch_default_Test(i);
 	}
+	part1::now_func_name();
+	part1::check_arr_size();
+	part1::use_array();
 	return 0;
 }
+
