@@ -1,49 +1,11 @@
-#include <iostream>
-#include <stdio.h>
-#include <stack>
-#include <string>
-
-using namespace std;
-
-int main()
-{
-
-	int T, X=0, Y=0;
-	string str;
-	cin >> T;
-	int k;
-	stack <char> p;
-	for (int i = 0; i < T; i++) {
-		k = 0;
-		cin >> str;
-		for (int g = 0; g < str.size(); g++) {
-			if (str[g] == ')') {
-				X++;
-			}
-			else {
-				Y++;
-			}
-		}
-
-		while (X != 0 && Y != 0) {
-			cout << X << " " << Y << endl;
-			if (str[k] == ')') {
-				if (str[k + 1] == ')') {
-					X--;
-					Y--;
-				}
-			}
-			continue;
-				
-			k++;
-
-		}
-	if (X == Y) {
-		printf("YES");
+#include <cstdio>
+int main() {
+	int ans = 0;
+	int temp;
+	for (int i = 0; i < 5; i++) {
+		scanf("%d", &temp);
+		(temp < 40) ? temp = 40 : temp;
+		ans += temp;
 	}
-	else {
-		printf("NO");
-	}
-}
-return 0;
+	printf("%d", ans / 5);
 }
