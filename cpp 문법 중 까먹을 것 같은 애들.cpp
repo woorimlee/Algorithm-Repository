@@ -1,21 +1,25 @@
 //전문가를 위한 C++(개정4판) 
-//80쪽 벡터
+//87쪽 시작
 
 #include <iostream>
 #include <string>
 #include <array>
+#include <cstdio>
+#include <initializer_list>
 
 using namespace std;
 
 /*
 용어
-Referential transparency : 참조적 투명성. 함수의 반환 값이 그 입력 값만으로 결정. 
+1. Referential transparency : 참조적 투명성. 함수의 반환 값이 그 입력 값만으로 결정. 
 	메모이제이션 기법을 사용하려면 참조적 투명함수로 구현되어야 함.
 	ex) int cnt = 0;
 		int count() {
 			return counter++;
 		}
 	이런 것은 참조적 투명함수가 아님. 실행할 때마다 cnt 값이 달라짐.
+
+2. Structured binding : 구조적 바인딩. part1 이름 공간에서 자세히 설명
 */
 
 namespace part1 {
@@ -87,18 +91,58 @@ namespace part1 {
 		cout << "\n";
 		return;
 	}
+
+	//structured binding : 구조적 바인딩
+	void use_sb() {
+		//여러 개의 변수를 선언할 때 배열, 구조체, 페어 등으로 초기화 가능.
+		array<int, 3> arr = { 11, 22, 33 };
+		auto [x, y, z] = arr;
+		cout << x << " " << y << " " << z << "\n";
+		struct Point { double mx, my, mz; };
+		Point point;
+		point.mx = 1.0; point.my = 2.0; point.mz = 3.0;
+		auto [x2, y2, z2] = point;
+		printf("%.1lf %.1lf %.1lf\n", x2, y2, z2);
+		return;
+	}
 	
+	//반복자를 리턴하는(begin()과 end()가 존재하는) 모든 컨테이너에 적용 가능한
+	//범위 기반 for문
+	void use_range_based_for_loop() {
+		array<int, 4> arr = { 1, 2, 3, 4 };
+		for (int i : arr) {
+			cout << i << " ";
+		}
+		cout << "\n";
+		return;
+	}
+
+	//initializer_list를 이용하면 여러 인수를 받는 함수를 쉽게 작성할 수 있다.
+	//<initializer_list> 헤더를 포함한다.
+	void use_ini_list(initializer_list<int> lst) {
+		int total = 0;
+		for (int i : lst) {
+			total += i;
+		}
+		cout << total << "\n";
+		return;
+	}
 }
 
 int main() {
-	part1::enum_Test();
+	//part1::enum_Test();
 	//열거형 for구문 돌리는 방법
+	/*
 	for (part1::Cafe i = part1::Cafe::SB; i < part1::Cafe::CafeCount; i = (part1::Cafe)(i+1)) {
 		part1::switch_default_Test(i);
 	}
-	part1::now_func_name();
-	part1::check_arr_size();
-	part1::use_array();
+	*/
+	//part1::now_func_name();
+	//part1::check_arr_size();
+	//part1::use_array();
+	//part1::use_sb();
+	//part1::use_range_based_for_loop();
+	//part1::use_ini_list({1, 2, 3, 4, 5});
 	return 0;
 }
 
