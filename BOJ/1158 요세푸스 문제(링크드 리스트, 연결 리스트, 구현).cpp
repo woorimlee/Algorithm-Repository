@@ -3,7 +3,7 @@
 using namespace std;
 
 int N, K;
-struct Node{
+struct Node {
 	int person;
 	Node* next;
 	Node(int i) : person{ i }, next{ nullptr } {};
@@ -17,7 +17,7 @@ void insertList(Node*& node, int i) {
 }
 
 void printList(Node* head) {
-	while (head != nullptr) {
+	while (head) {
 		cout << head->person << " -> ";
 		head = head->next;
 	}
@@ -25,35 +25,46 @@ void printList(Node* head) {
 	return;
 }
 
-void solveJosephus(Node*& node) {
+void deleteNode(Node* curr) {
+	Node* temp = curr->next;
+	curr->person = temp->person;
+	curr->next = temp->next;
+	delete temp;
+	return;
+}
+
+void solveJosephus(Node* node) {
 	cout << "<";
-	for (int i = K; i <= N * K; i += K) {
-		for (int j = 0; j < K; j++) {
-			//처음에만 K-1번
-			node = 
+	for (int i = 0; i < N; i++) {
+
+		for (int j = 0; j < K - 1; j++) {
+			node = node->next;
 		}
-		if (i == N * K) {
-			
+		if (i == N - 1) {
+			cout << node->person;
 		}
 		else {
-
+			cout << node->person << ", ";
 		}
-
+		deleteNode(node);
 	}
 	cout << ">";
+	return;
 }
 
 int main() {
 	cin >> N >> K;
-	Node * head = nullptr;
+	Node* head = nullptr;
 	for (int i = N; i >= 1; i--) {
 		insertList(head, i);
 	}
 	Node* temp = head;
-	while (temp->next != nullptr) {
-		temp = temp->next;
-	}
-	temp->next = head;
+	if (temp != nullptr)
+		while (temp->next != nullptr) {
+			temp = temp->next;
+		}
+	if (temp != nullptr)
+		temp->next = head;
 	//printList(head);
 	solveJosephus(head);
 	return 0;
