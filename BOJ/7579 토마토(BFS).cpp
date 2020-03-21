@@ -25,8 +25,12 @@ void printTomato() {
 }
 
 int main() {
-	int q_size=0;
+	ios_base::sync_with_stdio(false); cin.tie(NULL); cout.tie(NULL);
+	int q_size = 0;
 	int day = 0;
+	//토마토가 안 익는 경우가 없다면,
+	//익은 갯수 + 빈 공간 == M * N * H 
+	//total에 저장해뒀다가 -1을 출력하는 경우에 쓸거임
 	int total = 0;
 	cin >> M >> N >> H;
 	for (int i = 0; i < H; i++) {
@@ -47,9 +51,9 @@ int main() {
 	int nx, ny, nz;
 	q_size = q.size();
 	while (q_size--) {
-		auto [x, y, z] = q.front();
+		auto [z, y, x] = q.front();
 		q.pop();
-		//상 하 좌 우 방향에 덜 익은 토마토가 있으면
+		//상 하 좌 우 앞 뒤 방향에 덜 익은 토마토가 있으면
 		//익게 만들고 queue에 넣어놔서 다음 타임에 또 익은 상태를 확장시킴
 		for (int j = 0; j < 6; j++) {
 			nz = z + dir[j][0];
@@ -64,7 +68,7 @@ int main() {
 			}
 		}
 		if (!q_size) {
-			if(q_size = q.size())
+			if (q_size = q.size())
 				day++;
 		}
 	}
