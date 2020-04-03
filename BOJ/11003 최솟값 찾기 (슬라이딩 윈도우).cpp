@@ -6,6 +6,7 @@ using namespace std;
 int N, L;
 
 void solve_1();
+void solve_2();
 int find_min(deque <int>& dq);
 
 int main() {
@@ -15,7 +16,7 @@ int main() {
 	//https://www.geeksforgeeks.org/sliding-window-maximum-maximum-of-all-subarrays-of-size-k/
 	//simple하지만 느린 방법
 	//solve_1();
-	
+	solve_2();
 	return 0;
 }
 
@@ -45,7 +46,7 @@ void solve_1() {
 	for (int i = 0; i < ans.size(); i++) {
 		cout << ans[i] << " ";
 	}
-
+	return;
 }
 
 int find_min(deque <int> &dq) {
@@ -56,4 +57,10 @@ int find_min(deque <int> &dq) {
 		}
 	}
 	return min;
+}
+
+void solve_2() {
+
+
+
 }
