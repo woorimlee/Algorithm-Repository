@@ -15,7 +15,7 @@ using namespace std;
 	메모이제이션 기법을 사용하려면 참조적 투명함수로 구현되어야 함.
 	ex) int cnt = 0;
 		int count() {
-			return counter++;
+			return cnt++;
 		}
 	이런 것은 참조적 투명함수가 아님. 실행할 때마다 cnt 값이 달라짐.
 
