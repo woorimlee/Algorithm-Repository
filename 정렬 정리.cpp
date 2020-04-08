@@ -36,10 +36,15 @@ int main() {
 		cout << it << " ";
 	}
 	cout << "==> 정렬 전 배열\n======================================\n";
+	
+	//이하 알고리즘 평균 O(N^2)
 	//SelectionSort(arr);
 	//BubbleSort(arr);
 	//ImprovedBubbleSort(arr);
-	InsertionSort(arr);
+	//InsertionSort(arr);
+
+	//이하 알고리즘 평균 O(NlogN)
+
 
 	cout << "==> 정렬 후 배열\n";
 	return 0;
