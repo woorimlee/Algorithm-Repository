@@ -2,6 +2,9 @@
 #include <array>
 #include <algorithm>
 #include <random>
+
+#define ARRSIZE 10
+
 using namespace std;
 
 /*
@@ -36,12 +39,12 @@ int GetRandomInt(int min, int max) {
 	return range(mt);
 }
 
-int LinearTimeSelection(array <int, 10> & arr, int s, int e, int k);
+int LinearTimeSelection(array <int, ARRSIZE> & arr, int s, int e, int k);
 int WorstCaseLinearTimeSelection();
 
 int main() {
-	array <int, 10> arr;
-	for (int i = 0; i < 10; i++) {
+	array <int, ARRSIZE> arr;
+	for (int i = 0; i < ARRSIZE; i++) {
 		arr[i] = GetRandomInt(-20, 20);
 	}
 
@@ -50,12 +53,12 @@ int main() {
 		cout << it << " ";
 	}
 
-	int k = GetRandomInt(1, 10);
+	int k = GetRandomInt(1, 11);
 	cout << "\n" << k << "번째 작은 원소의 값 : ";
 	/*array <int, 10> test = { 5, 2, 3, 4, 6, 7, 8, 1, 11, 10 };
 	int test_k = 9;
 	cout << LinearTimeSelection(test, 0, 9, test_k);*/
-	cout << LinearTimeSelection(arr, 0, 9, k) << "\n";
+	cout << LinearTimeSelection(arr, 0, arr.size() - 1, k) << "\n";
 	cout << "정렬된 배열 : ";
 	sort(arr.begin(), arr.end());
 	for (auto it : arr) {
@@ -66,7 +69,7 @@ int main() {
 	return 0;
 }
 
-int LinearTimeSelection(array <int, 10> & arr, int s, int e, int k) { //s = start, e = end
+int LinearTimeSelection(array <int, ARRSIZE> & arr, int start, int end, int k) {
 	/*
 	퀵 정렬을 기억하는가?
 	pivot을 정하고 피봇보다 작은 값은 배열의 왼쪽에, 큰 값은 오른쪽으로
@@ -78,40 +81,43 @@ int LinearTimeSelection(array <int, 10> & arr, int s, int e, int k) { //s = star
 	만약 k번째 작은 원소를 찾는 데 k의 값이 2이면 답 찾은 것이고,
 	2보다 작으면 왼쪽 부분에, 2보다 크면 오른쪽 배열에 원하는 답이 있을 것이다.
 	*/
+
 	//처음과 끝이 같으면 리턴
-	if (s == e)
-		return s;
+	if (start == end) {
+		return arr[start];
+	}
 
 	//피봇이 몇 번째 위친지 구하기
-	int i = s; //교체할 인덱스
-	int j = s; //비교할 인덱스
-	while (j <= e) {
+	int i = start; //교체할 인덱스
+	int j = start; //비교할 인덱스
+	while (j <= end) {
 		//피봇보다 작은 놈 찾으면 교체, 큰 놈 찾으면 비교할 놈 위치만 바꾸기
-		if (arr[e] >= arr[j]) {
+		if (arr[end] >= arr[j]) {
 			swap(arr[i], arr[j]);
 			i++;
 		}
 		j++;
 	}
 	//위 반복문에서 마지막에 i++하기 때문에 피봇의 인덱스 값이 1 증가 된 상태.
-	//k는 배열의 크기가 10일때 1~ 10까지 쓰이는 값이고,
-	//i도 1 증가된 상태니 i와 k를 바로 비교
-	//cout << k << i;
 
+	//확인용
+	//for (auto it : arr) {
+	//	cout << it << " ";
+	//}cout << "\n";
+	//cout << start  <<" " << end << " "  << i<< "\n";
 
+	
 	//찾는 위치 == 피봇 위치면 답 찾음
 	if (k == i) {
 		return arr[i - 1];
 	}
-
-	//만약 작으면 왼쪽으로 재귀
-	else if (i < k) {
-		return LinearTimeSelection(arr, s, i - 1, k);
-	}
-	//크면 오른쪽으로 재귀
-
+	//만약 크면 왼쪽으로 재귀
 	else if (i > k) {
-		return LinearTimeSelection(arr, i + 1, e, k);
+		return LinearTimeSelection(arr, start, i - 2, k);
+	}
+	//작으면 오른쪽으로 재귀
+	else if (i < k) {
+		return LinearTimeSelection(arr, i, end, k);
 	}
 }
 
