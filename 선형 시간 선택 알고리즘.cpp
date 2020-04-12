@@ -58,9 +58,6 @@ int main() {
 	int k = GetRandomInt(1, ARRSIZE);
 	cout << "\n" << k << "번째 작은 원소의 값 :\n";
 	//cout << "1. 평균 선형시간 : ";
-	/*array <int, 10> test = { 1, 2, 3, 4, 6, 7, 8, 9, 10, 11 };
-	int test_k = 1;
-	cout << LinearTimeSelection(test, 0, 9, test_k);*/
 	//cout << LinearTimeSelection(arr, 0, arr.size() - 1, k) << "\n";
 	cout << "2. 최악의 경우 선형 시간 : ";
 	cout << WorstCaseLinearTimeSelection(arr, 0, arr.size() - 1, k) << "\n";
