@@ -151,7 +151,6 @@ int WorstCaseLinearTimeSelection(array <int, ARRSIZE>& arr, int start, int end, 
 	//5개 이하이면 찾아보고 리턴
 	else if (end - start <= 4) {
 		sort(arr.begin() + start, arr.begin() + end + 1);
-		cout << "??";
 		return arr[k - 1];
 	}
 
