@@ -40,6 +40,8 @@ int GetRandomInt(int min, int max) {
 }
 
 int LinearTimeSelection(array <int, ARRSIZE> & arr, int s, int e, int k);
+
+int FindMedian(int arr[], int n);
 int WorstCaseLinearTimeSelection(array <int, ARRSIZE>& arr, int start, int end, int k);
 
 int main() {
@@ -53,13 +55,13 @@ int main() {
 		cout << it << " ";
 	}
 
-	int k = GetRandomInt(1, 11);
+	int k = GetRandomInt(1, ARRSIZE);
 	cout << "\n" << k << "번째 작은 원소의 값 :\n";
-	cout << "1. 평균 선형시간 : ";
+	//cout << "1. 평균 선형시간 : ";
 	/*array <int, 10> test = { 1, 2, 3, 4, 6, 7, 8, 9, 10, 11 };
 	int test_k = 1;
 	cout << LinearTimeSelection(test, 0, 9, test_k);*/
-	cout << LinearTimeSelection(arr, 0, arr.size() - 1, k) << "\n";
+	//cout << LinearTimeSelection(arr, 0, arr.size() - 1, k) << "\n";
 	cout << "2. 최악의 경우 선형 시간 : ";
 	cout << WorstCaseLinearTimeSelection(arr, 0, arr.size() - 1, k) << "\n";
 	cout << "정렬된 배열 : ";
@@ -126,6 +128,14 @@ int LinearTimeSelection(array <int, ARRSIZE> & arr, int start, int end, int k) {
 	}
 }
 
+
+//최악의 상황에도 선형 시간 선택 알고리즘에 쓰일 함수
+int FindMedian(int arr[], int n)
+{
+	sort(arr, arr + n);
+	return arr[n / 2];
+}
+//sort를 너무 남발한것같아.
 int WorstCaseLinearTimeSelection(array <int, ARRSIZE>& arr, int start, int end, int k) {
 	/*
 	알고리즘
@@ -142,20 +152,94 @@ int WorstCaseLinearTimeSelection(array <int, ARRSIZE>& arr, int start, int end, 
 		return arr[start];
 	}
 	//5개 이하이면 찾아보고 리턴
-	else if (end <= 4) {
-		/*for (int i = 0; i < end; i++) {
-			if()
-		}*/
+	else if (end - start <= 4) {
+		sort(arr.begin() + start, arr.begin() + end + 1);
+		cout << "??";
+		return arr[k - 1];
 	}
 
-	//n/5개의 그룹으로 나누고 중간 값을 저장한다.
+	//1 & 2. n/5개의 그룹으로 나누고 중간 값을 저장한다.
+	int i=0, size = end-start+1;
+	int* median;
+	median = new int[(size+ 4) / 5]; //size가 6~ 10이면 두 개 만들어야 하고, ...  
+	cout << "median : ";
+	for (i = 0; i < size / 5; i++) {
+		//(size+4)/5개 만큼 만들어진 배열 중 맨 마지막 인덱스 빼고는
+		//모두 5개씩 비교해볼 수 있음.
+		//현재 탐색중인 배열의 첫 위치 + i*5번째부터 5개 중 중간 값 찾기
+		median[i] = FindMedian(&arr[start] + start + i * 5, 5);
+		cout << median[i] << " ";
+	}
+	if (size % 5 != 0) {
+		median[i] = FindMedian(&arr[start] + start + i * 5, size % 5);
+		cout << median[i] << "\n";
+	}
 
-	//m1, m2, ..., mn/5 의 중간 값을 재귀적으로 구한다.
+	//3. m1, m2, ..., mn/5 의 중간 값을 재귀적으로 구한다.
+	sort(median, median + (size + 4) / 5);
+	int med_of_med = median[((size + 4) / 5) / 2];
+	cout << "medofmed : " << med_of_med << "\n" ;
 
-	//M을 pivot으로 M의 index를 구한다.
+	//4. M을 pivot으로 퀵 정렬을 수행할 예정.
+	//1) M의 index를 구한다.
+	i = start;
+	for (; i < end; i++) {
+		if (arr[i] == med_of_med) {
+			break;
+		}
+	}
+	//2) M을 맨 뒤로 보낸다
+	/*for (auto it : arr) {
+		cout << it << " ";
+	}cout << "\n";*/
+	swap(arr[i], arr[end]);
+	for (auto it : arr) {
+		cout << it << " ";
+	}cout << "\n";
+	//3) partition 수행
+	i = start;
+	int j = start;
+	while (j <= end) {
+		//피봇보다 작은 놈 찾으면 교체, 큰 놈 찾으면 비교할 놈 위치만 바꾸기
+		if (arr[end] >= arr[j]) {
+			swap(arr[i], arr[j]);
+			i++;
+		}
+		j++;
+	}
+	//위 반복문에서 마지막에 i++하기 때문에 피봇의 인덱스 값이 1 증가 된 상태.
 
-	
-	//M의 인덱스와 k를 비교하고 subarray에 대해 재귀 탐색을 실행한다.
+	//확인용
+	for (auto it : arr) {
+		cout << it << " ";
+	}cout << "\n";
 
-	return 0;
+	//5. M의 인덱스와 k를 비교하고 subarray에 대해 재귀 탐색을 실행한다.
+	//찾는 위치 == 피봇 위치면 답 찾음
+	if (k == i) {
+		return arr[i - 1];
+	}
+	//만약 크면 왼쪽으로 재귀
+	else if (i > k) {
+		return WorstCaseLinearTimeSelection(arr, start, i - 2, k);
+	}
+	//작으면 오른쪽으로 재귀
+	else if (i < k) {
+		return WorstCaseLinearTimeSelection(arr, i, end, k);
+	}
 }
+
+/* 문제점 : 
+주어진 배열
+-20 6 17 6 17 -9 -20 -2 -2 -18
+7번째 작은 원소의 값 :
+2. 최악의 경우 선형 시간 : median : 6 -9 medofmed : 6
+-20 -2 6 17 17 -20 -18 -9 -2 6
+-20 -2 6 -20 -18 -9 -2 6 17 17
+median : -18 -2
+medofmed : -2
+-20 -20 -18 -2 6 -9 -2 6 17 17
+-20 -20 -18 -2 -9 -2 6 6 17 17
+6
+정렬된 배열 : -20 -20 -18 -9 -2 -2 6 6 17 17
+*/
