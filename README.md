@@ -14,4 +14,5 @@
 
 ### 구현해 놓은 알고리즘 : 
 * **선형 시간 선택(Linear time selection)** : 
-  * 
+  * [평균 선형 시간 선택 알고리즘](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Linear%20time%20selection%20algorithm.cpp)
+  * [최악의 경우 선형 시간 탐색 알고리즘](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Selection%20in%20worst%20case%20linear%20time%20algorithm.cpp)
