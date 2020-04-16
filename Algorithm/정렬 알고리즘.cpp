@@ -35,31 +35,29 @@ void Merge(array <int, ARRSIZE> & arr, int left, int mid, int right);
 void QuickSort(array<int, ARRSIZE> & arr, int left, int right);
 
 int main() {
-	for (int i = 0; i < 100; i++) {
-		array <int, ARRSIZE> arr = { 0 };
-		for (int i = 0; i < ARRSIZE; i++) {
-			arr[i] = GetRandomInt(-5, 5);
-		}
-		for (auto it : arr) {
-			cout << it << " ";
-		}
-		cout << "==> 정렬 전 배열\n======================================\n";
-
-		//이하 알고리즘 평균 O(N^2)
-		//SelectionSort(arr);
-		//BubbleSort(arr);
-		//ImprovedBubbleSort(arr);
-		//InsertionSort(arr);
-		//이하 알고리즘 평균 O(NlogN)
-		//MergeSort(arr);
-		QuickSort(arr, 0, ARRSIZE - 1);
-		for (auto it : arr) {
-			cout << it << " ";
-		}cout << "\n";
-
-
-		cout << "==> 정렬 후 배열\n";
+	array <int, ARRSIZE> arr = { 0 };
+	for (int i = 0; i < ARRSIZE; i++) {
+		arr[i] = GetRandomInt(-5, 5);
 	}
+	for (auto it : arr) {
+		cout << it << " ";
+	}
+	cout << "==> 정렬 전 배열\n======================================\n";
+
+	//이하 알고리즘 평균 O(N^2)
+	//SelectionSort(arr);
+	//BubbleSort(arr);
+	//ImprovedBubbleSort(arr);
+	//InsertionSort(arr);
+	//이하 알고리즘 평균 O(NlogN)
+	//MergeSort(arr);
+	QuickSort(arr, 0, ARRSIZE - 1);
+	for (auto it : arr) {
+		cout << it << " ";
+	}cout << "\n";
+
+
+	cout << "==> 정렬 후 배열\n";
 	return 0;
 }
 
