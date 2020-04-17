@@ -16,3 +16,9 @@
 * **선형 시간 선택(Linear time selection)** : 
   * [평균 선형 시간 선택 알고리즘](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Linear%20time%20selection%20algorithm.cpp)
   * [최악의 경우 선형 시간  알고리즘](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Selection%20in%20worst%20case%20linear%20time%20algorithm.cpp)
+* **정렬** :
+  * [버블 정렬 & Improved Bubble Sort O(N^2)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Improved%20Bubble%20Sort.cpp)
+  * [선택 정렬 O(N^2)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Selection%20Sort.cpp)
+  * [삽입 정렬 O(N^2) ~ O(N)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Insertion%20Sort.cpp)
+  * [합병 정렬 O(nlogn)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Merge%20Sort.cpp)
+  * [퀵 정렬 O(nlogn)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Quick%20Sort.cpp)
