@@ -19,6 +19,6 @@
 * **정렬** :
   * [버블 정렬 & Improved Bubble Sort O(N^2)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Improved%20Bubble%20Sort.cpp)
   * [선택 정렬 O(N^2)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Selection%20Sort.cpp)
-  * [삽입 정렬 O(N^2) ~ O(N)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Insertion%20Sort.cpp)
+  * [삽입 정렬 평균 : O(N^2) 최고 : O(N)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Insertion%20Sort.cpp)
   * [합병 정렬 O(nlogn)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Merge%20Sort.cpp)
-  * [퀵 정렬 O(nlogn)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Quick%20Sort.cpp)
+  * [퀵 정렬 평균 : O(nlogn) 최악 : O(N^2)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Algorithm/Quick%20Sort.cpp)
