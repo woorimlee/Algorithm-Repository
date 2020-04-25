@@ -130,7 +130,7 @@ namespace part1 {
 }
 
 int main() {
-	//part1::enum_Test();
+	part1::enum_Test();
 	//열거형 for구문 돌리는 방법
 	/*
 	for (part1::Cafe i = part1::Cafe::SB; i < part1::Cafe::CafeCount; i = (part1::Cafe)(i+1)) {
