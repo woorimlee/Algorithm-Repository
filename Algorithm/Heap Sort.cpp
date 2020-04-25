@@ -71,9 +71,9 @@ void HeapSort(array<int, ARRSIZE>& arr) {
 	//Heapify만 사용하면 최대 or 최소 힙이 제대로 만들어지지 않아서
 	//처음에는 무조건 배열을 최대힙 형태로 한 번 바꿔야 함.
 	//그 함수의 이름을 BuildHeap이라고 정의
-	BulidHeap(arr);
+	BulidHeap(arr);	//한 번 힙모양으로 바꾸고나면
 	for (int i = arr.size() - 1; i >= 0; i--) {
-		swap(arr[0], arr[i]);
+		swap(arr[0], arr[i]); //이후에는 최대 힙만 찾아서 가장 큰 값을 맨 뒤로만 바꾸면 됨.
 		MaxHeapify(arr, 0, i);
 	}
 }
@@ -89,7 +89,7 @@ void MaxHeapify(array<int, ARRSIZE>& arr, int start, int size) {
 	int left = start * 2 + 1;
 	int right = start * 2 + 2;
 	int largest = start;
-	//부모 노드 기준으로 왼쪽과 오른쪽 자식 노드중 가장 큰 값을 찾음
+	//부모 노드 기준으로 왼쪽과 오른쪽 자식 노드중 가장 큰 값을 찾음 (그래서 largest를 하나만 두는 것)
 	if (left < size && arr[left] > arr[largest]) {
 		largest = left;
 	}
