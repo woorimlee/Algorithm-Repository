@@ -83,24 +83,24 @@ int main()
 			if (dq.empty()) {
 				cout << "[]\n";
 			}
-			else { 
+			else {
+				int size = dq.size();
 				cout << "[";
 				if (r_flag) {//R이 홀수 번 실행되면 거꾸로 출력
-					for (int i = 0; i < dq.size() - 1; i++) {
+					for (int i = 0; i < size - 1; i++) {
 						cout << dq.back() << ",";
 						dq.pop_back();
 					}
 					cout << dq[0];
 				}
 				else {
-					for (int i = 0; i < dq.size() - 1; i++) {
+					for (int i = 0; i < size - 1; i++) {
 						cout << dq[i] << ",";
 					}
 					cout << dq.back();
 				}
 				cout << "]\n";
 			}
-			
 		}
 
 	}
