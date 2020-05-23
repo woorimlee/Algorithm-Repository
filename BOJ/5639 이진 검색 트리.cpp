@@ -10,9 +10,7 @@ int main() {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
 	int i = 0;
-	while (cin >> tree[i]) {
-		i++;
-	}
+	while (cin >> tree[i++]);
 	//맨 앞의 값을 부모로
 	//왼쪽 sub tree는 
 	//시작+1 ~ 자기보다 큰 노드 -1
@@ -59,7 +57,10 @@ void postorder(int s, int e)
 	if (s  >= e)
 		return;
 	auto it = upper_bound(preorder + s, preorder + e, preorder[s]);
+	//https://blockdmask.tistory.com/168
+	//https://modoocode.com/298
 	int dist = distance(preorder, it);
+	//http://soen.kr/lecture/ccpp/cpp4/39-2-4.htm
 	postorder(s + 1, dist);
 	postorder(dist, e);
 	cout << preorder[s] << "\n";
