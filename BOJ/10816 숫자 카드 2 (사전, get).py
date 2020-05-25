@@ -22,3 +22,23 @@ for card in input().split():
 M = input()
 print(' '.join(map(str, [my_card[card] for card in input().split()])))
 """
+
+"""
+N = int(input())
+N_list = input().split()
+my_card = {}
+for card in N_list :
+    if card in my_card : 
+        my_card[card] += 1
+    else :
+        my_card[card] = 1
+
+M = int(input())
+M_list = input().split()
+
+for card in M_list : 
+    if card in my_card : 
+        print(my_card[card])
+    else :
+        print(0)
+"""
