@@ -46,7 +46,7 @@ int main() {
 			root = i;
 		}
 	}
-	cin >> delete_node;
+	cin >> delete_node;	
 	//지울 노드는 dfs로 탐색하지 않을 예정
 	visited[delete_node] = true;
 	//루트 노드를 지울 노드로 선정하는 경우가 있다고 함.
