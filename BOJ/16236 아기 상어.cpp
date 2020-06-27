@@ -1,5 +1,4 @@
 #include <iostream>
-#include <iostream>
 #include <queue>
 /*
 규칙 : 
@@ -33,14 +32,48 @@ using namespace std;
 struct Fish{
 	int x, y, dist;
 	Fish(int x, int y, int dist) : x{ x }, y{ y }, dist{ dist }{};
-	bool operator < (Fish other) {
-		if()
+	bool operator < (const Fish other) const {
+		if (dist == other.dist) {
+			if (y == other.y)
+				return x > other.x;
+			else
+				return y > other.y;
+		}
+		return dist > other.dist;
 	}
 };
 typedef struct Fish Fish; //C언어와의 호환성을 위해
 
-int N;
-int s_eat, s_size; //shark가 먹은 갯수, shark 사이즈
+int N, ans;
+int s_eat, s_size, s_x, s_y; //shark가 먹은 갯수, shark 사이즈
 int map[21][21];
 bool visited[21][21];
 int dir[4][2] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
+
+void bfs(); // 우선 순위큐로 돌면서 물고기 찾고 먹고...
+
+int main() {
+	ios_base::sync_with_stdio(false);
+	cin.tie(NULL);
+	cin >> N;
+	for (int i = 0; i < N; i++) {
+		for (int j = 0; j < N; j++) {
+			cin >> map[i][j];
+			if (map[i][j] == 9) {
+				s_x = j;
+				s_y = i;
+				map[i][j] = 0;
+			}
+		}
+	}
+
+	s_size = 2;
+	bfs();
+	cout << ans;
+
+	return 0;
+}
+
+void bfs() {
+
+}
