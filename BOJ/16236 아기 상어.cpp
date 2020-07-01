@@ -49,7 +49,7 @@ typedef struct Fish Fish; //C언어와의 호환성을 위해
 int N, ans;
 int s_eat, s_size, s_x, s_y; //shark가 먹은 갯수, shark 사이즈
 int map[21][21];
-bool visited[21][21];
+bool visited[21][21] = { false };
 int dir[4][2] = { {0, -1}, {1, 0}, {0, 1}, {-1, 0} };
 
 void bfs(); // 우선 순위큐로 돌면서 물고기 찾고 먹고...
@@ -79,7 +79,7 @@ void bfs() {
 	priority_queue<Fish> pq;
 	pq.push({ s_x, s_y, 0 });
 
-	int x, y, dist;
+	int x, y, dist, nx, ny;
 	Fish temp(0, 0, 0);
 	while (!pq.empty()) {
 		temp = pq.top();
@@ -87,7 +87,15 @@ void bfs() {
 		x = temp.x;
 		y = temp.y;
 		dist = temp.dist;
-		
+		/*
+		cout << x << " " << y << "\n";
+		for (int i = 0; i < N; i++) {
+			for (int j = 0; j < N; j++) {
+				cout << map[i][j] << " ";
+			}
+			cout << "\n";
+		}cout << "\n";
+		*/
 		//물고기 먹기
 		if (0 < map[y][x] && map[y][x] < s_size) {
 			//물고기 없애기, 먹은 갯수 증가 등의 작업
@@ -95,7 +103,7 @@ void bfs() {
 			ans += dist; //정답 갱신
 			dist = 0;
 			s_eat++; 
-			fill(visited[0][0], visited[21][21], false);
+			fill(&visited[0][0], &visited[20][21], false);
 			while (!pq.empty())
 				pq.pop();
 			//먹은 수랑 사이즈랑 같아지면
@@ -106,5 +114,15 @@ void bfs() {
 		}
 
 		//이동시키기
+		for (int i = 0; i < 4; i++) {
+			nx = x + dir[i][0];
+			ny = y + dir[i][1];
+			if (0 <= nx && nx < N && 0 <= ny && ny < N && !visited[ny][nx]) {
+				if (0 <= map[ny][nx] && map[ny][nx] <= s_size) {
+					pq.push({ nx, ny, dist + 1 });
+					visited[ny][nx] = true;
+				}
+			}
+		}
 	}
 }
