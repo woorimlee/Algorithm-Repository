@@ -1,7 +1,8 @@
-#include <incorrect.h>
+#include "incorrect.h"
 #include <cstdio>
+#pragma warning(disable:4996)
 
-void section3() {
+void chapter1::section3() {
 	//1-3 데이터 입 출력
 	float i;
 	//scanf("%4f", &i); //입력받을 때 . 포함 네 자리만 받음. 12.1234 -> 12.1
@@ -28,7 +29,7 @@ void section3() {
 	//Welc, _We
 }
 
-void section4() {
+void chapter1::section4() {
 	//1-4 연산자
 	printf("%d, %d, %d\n", 11 % -2, -11 % 2, -11 % -2);
 	int a = 2, b = 4;
@@ -47,4 +48,17 @@ void section4() {
 	c = c | c << 3;
 	c = a < 5 || c >= 10 ? c - a : c + a;
 	printf("%d\n", c);
+}
+
+void chapter1::section6() {
+	//1-6 반복문
+	int a, b;
+	a = 10, b = 0;
+	while (a > 1) {
+		a--;
+		if (a % 3 == 1) {
+			b += a;
+		}
+	}
+	printf("%d\n", b);
 }

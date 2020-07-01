@@ -1,10 +1,6 @@
 #include <stdio.h>
 #pragma warning(disable:4996)
 
-namespace chapter1 {
-
-}
-
 int main()
 {
 	//////////////////////////////////////////////////////////////////////////////
