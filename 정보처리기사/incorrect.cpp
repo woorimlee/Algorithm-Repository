@@ -62,3 +62,22 @@ void chapter1::section6() {
 	}
 	printf("%d\n", b);
 }
+
+void chapter1::section8() {
+	//1-8 ∆˜¿Œ≈Õ
+	int arr[4] = { 1, -3, 5, -7 };
+	int* p = arr;
+	printf("%d, ", ++ * p);
+	printf("%d, ", *p++);
+	printf("%d, ", *p);
+	printf("%d\n", *++p);
+	int a = 5, b, * c;
+	c = &a;
+	b = (*c)++;
+	printf("%d %d\n", a, b);
+	a = 31, c = &a;
+	int* d = &b;
+	*d = -- * c % 3 ? a + a : a * a;
+	printf("%d\n", *d);
+
+}
