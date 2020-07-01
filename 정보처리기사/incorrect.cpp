@@ -1,9 +1,7 @@
-#include <stdio.h>
-#pragma warning(disable:4996)
+#include <incorrect.h>
+#include <cstdio>
 
-int main()
-{
-	//////////////////////////////////////////////////////////////////////////////
+void section3() {
 	//1-3 데이터 입 출력
 	float i;
 	//scanf("%4f", &i); //입력받을 때 . 포함 네 자리만 받음. 12.1234 -> 12.1
@@ -28,8 +26,9 @@ int main()
 	char inStr[] = "Welcome, C World!";
 	printf("%.4s, %3.2s\n", inStr, inStr);
 	//Welc, _We
+}
 
-	//////////////////////////////////////////////////////////////////////////////
+void section4() {
 	//1-4 연산자
 	printf("%d, %d, %d\n", 11 % -2, -11 % 2, -11 % -2);
 	int a = 2, b = 4;
@@ -48,6 +47,4 @@ int main()
 	c = c | c << 3;
 	c = a < 5 || c >= 10 ? c - a : c + a;
 	printf("%d\n", c);
-
-	return 0;
 }

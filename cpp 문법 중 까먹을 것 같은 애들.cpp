@@ -42,8 +42,8 @@ namespace part1 {
 
 	//스위치도 자주 쓰인다고 하네요?
 	void switch_default_Test(Cafe cafe) {
-		switch (cafe) {
-			case Cafe::SB:
+		switch (cafe) { //수식에 대한
+			case Cafe::SB: //연산 결과
 				cout << "스타벅스\n";
 				break;
 			//fallthrough 폴스루, 흘려보내기 방식
