@@ -11,4 +11,5 @@ namespace chapter4 {
 	void section40();
 	void section42();
 	void section43();
+	void section45_46();
 }

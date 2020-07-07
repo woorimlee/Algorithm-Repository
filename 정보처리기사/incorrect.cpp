@@ -4,8 +4,10 @@
 #include <conio.h>
 #pragma warning(disable:4996)
 
+int temp;
+
 void chapter1::section3() {
-	//1-3 데이터 입 출력
+	printf("3. 데이터 입 출력\n");
 	float i;
 	//scanf("%4f", &i); //입력받을 때 . 포함 네 자리만 받음. 12.1234 -> 12.1
 	printf("H\rI\n\bHi\n");
@@ -32,7 +34,7 @@ void chapter1::section3() {
 }
 
 void chapter1::section4() {
-	//1-4 연산자
+	printf("4. 연산자\n");
 	printf("%d, %d, %d\n", 11 % -2, -11 % 2, -11 % -2);
 	int a = 2, b = 4;
 	printf("%d, %d\n", (++a + ++a), (++b + b++ + ++b + b++));
@@ -53,7 +55,7 @@ void chapter1::section4() {
 }
 
 void chapter1::section6() {
-	//1-6 반복문
+	printf("6. 반복문\n");
 	int a, b;
 	a = 10, b = 0;
 	while (a > 1) {
@@ -66,7 +68,7 @@ void chapter1::section6() {
 }
 
 void chapter1::section8() {
-	//1-8 포인터
+	printf("8. 포인터\n");
 	int arr[4] = { 1, -3, 5, -7 };
 	int* p = arr;
 	printf("%d, ", ++ * p);
@@ -85,28 +87,68 @@ void chapter1::section8() {
 }
 
 void chapter4::section40() {
+	printf("40. 연계 요구사항 분석\n");
 	printf("통합 구현은 사용자의 요구사항을 해결하고, 새로운 서비스 창출을 위해 모듈 간의 연계와 통합을 의미한다.\n");
 	printf("일반적인 통합 구현의 구성 요소 5가지를 쓰시오.\n");
 	//Sleep(10000);
 	while (!kbhit());
+	temp = getch();
 	printf("  정답 : 송신 시스템, 수신 시스템, 중계 시스템, 네트워크, 연계 데이터.\n");
 }
 
 void chapter4::section42() {
+	printf("42. 연계 메커니즘 정의\n");
 	printf("연계 메커니즘은 데이터를 생성하여 전송하는 송신 체계와 수신하여 운영 DB에 반영하는 수신 체계로 구성된다.\n");
 	printf("송신 시스템, 수신 시스템, 중계 시스템의 각 역할을 간략히 서술하시오.\n");
 	while (!kbhit());
+	temp = getch();
 	printf("  송신 시스템 : 운영 DB로부터 인터페이스 테이블이나 파일 형식으로 연계할 데이터를 생성하여 송신한다.\n");
 	printf("  수신 시스템 : 전송된 데이터를 수신 시스템에 맞는 형식으로 변환한 후 운영 DB에 반영한다.\n");
 	printf("  중계 시스템 : 송 수신 시스템을 연계하며 데이터 오류 처리 등의 현황을 모니터링한다.\n");
+	printf("\n연계 메커니즘의 구성 요소와 절차를 서술하시오.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  송신 시스템 연계 데이터 생성 -> 코드 매핑 및 데이터 변환 -> 인터페이스 테이블 또는 파일 생성 ->\n");
+	printf("  연계 서버 또는 송신 어댑터를 이용한 전송 -> 연계 서버 또는 수신 어댑터를 이용한 수신 ->\n");
+	printf("  인터페이스 테이블 또는 파일 수신 -> 코드 매핑 및 데이터 변환 -> 운영 DB에 데이터 반영.\n");
 }
 
 void chapter4::section43() {
+	printf("43. 연계 장애 및 오류처리 구현\n");
 	printf("연계 메커니즘의 오류 처리 절차에 대해 서술하시오.\n");
 	while (!kbhit());
+	temp = getch();
 	printf("  1. 연계 서버에서 제공하는 모니터로 장애 및 오류 현황 모니터링을 통해 원인 및 발생 현황 파악\n");
 	printf("  2. 송, 수신 시스템 및 연계 시스템에서 기록한 오류 로그 테이블 또는 파일을 확인\n");
 	printf("  3. 오류에 대해 적절한 조치를 취한 후 데이터 생성부터 송신 및 수신을 통한 DB 반영까지 재실행\n");
 	printf("\n\t(추가 정보) 식별한 오류 내용은 오류 코드를 부여하고 오류 메세지를 정의한다.\n");
 	printf("\t오류 코드와 메세지가 많으면 테이블 관리 방식을, 적으면 파일 관리 방식을 이용한다\n");
+}
+
+void chapter4::section45_46() {
+	printf("45. 연계 모듈의 구현 환경, 46. XML\n");
+	printf("EAI와 ESB의 개념을 간략히 서술하시오.\n");
+	while (!kbhit());
+	printf("  EAI : Enterprise Application Integration. 기업내 각종 어플리케이션, 플랫폼 간의 정보 연계 등을 가능하게 해주는 솔루션으로, 시스템 확장성을 높여준다.\n");
+	printf("  구축 유형에는 point-to-point, hub & spoke, message bus, hybrid 방식이 있다.\n");
+	printf("  ESB : Enterprise Service Bus. 기업내 각종 어플리케이션 연계 등 표준 기반의 인터페이스를 제공하는 솔루션. 서비스 중심의 통합을 지향한다.\n");
+	printf("  어플리케이션간 결합도를 약하게 유지한다.\n");
+	printf("\n웹 서비스의 개념을 간략히 서술하고, 세 가지 구성에 대해서 설명하시오.\n");
+	temp = getch();
+	while (!kbhit());
+	temp = getch();
+	printf("  Web Service : 네트워크의 정보를 표준화된 서비스 형태로 만들어 SOA(Service Oriented Architecture. 서비스 기반 아키텍처) 개념을 실현한다.\n");
+	printf("  웹 서비스는 네트워크 상에서 XML 기반의 메세지를 교환하기 위한 SOAP와 검색 및 접근을 위한 UDDI, 웹 서비스에 대한 상세 정보를 XML 형식으로 구현한 WSDL로 구성된다.\n");
+	printf("  SOAP(Simple Object Access Protocol) : HTTP, SMTP 등을 활용해 XML 기반 메세지를 교환하는 프로토콜.\n");
+	printf("  WSDL(Web Services Description Language) : 웹 서비스명, 서비스 제공 위치, 프로토콜 등 서비스에 대한 상세 정보를 XML 형식으로 구현. UDDI의 기초로 인터넷에 웹 서비스를 제공하기 위해 사용되며, 클라이언트가 서버에서 어떤 조작이 가능한지 명시되어 있다.\n");
+	printf("  UDDI(Universal Description, Discovery and Integration) : 인터넷에서 전 세계의 비즈니스 업체 목록에 자신의 정보를 등록하고자 WSDL을 등록하여 서비스와 서비스 제공자를 검색하고 접근하는 데 사용.\n");
+	printf("\nXML의 특징을 서술하시오.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  XML(eXtensible Markup Language)은 웹 브라우저간 HTML 호환 문제, SGML의 복잡함을 해결하기 위해 개발된 다목적 마크업 언어다.\n");
+	printf("  특징으로는\n  1. 사용자가 직접 문서의 태그를 정의하고 다른 사용자 태그 사용 가능.\n");
+	printf("  2. 텍스트 형식 포맷으로 다양한 시스템에서 활용 가능.\n");
+	printf("  3. 유니코드를 기반으로 다국어를 지원.\n");
+	printf("  4. 트리 구조로 구성되어 있어 상위 태그가 여러 개의 하위 태그를 가질 수 있음.\n");
+	printf("  5. 모든 태그는 종료 태그를 가지며, 시작 태그와 종료 태그의 Element(요소) 이름은 동일하다.\n");
 }
