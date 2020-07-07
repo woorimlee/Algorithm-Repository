@@ -1,4 +1,5 @@
 #include "incorrect.h"
+#include<windows.h>
 #include <cstdio>
 #pragma warning(disable:4996)
 
@@ -80,4 +81,11 @@ void chapter1::section8() {
 	*d = -- * c % 3 ? a + a : a * a;
 	printf("%d\n", *d);
 
+}
+
+void chapter4::section40() {
+	printf("통합 구현은 사용자의 요구사항을 해결하고, 새로운 서비스 창출을 위해 모듈 간의 연계와 통합을 의미한다.\n");
+	printf("일반적인 통합 구현의 구성 요소 5가지를 쓰시오.");
+	Sleep(10000);
+	printf("정답 : 송신 시스템, 수신 시스템, 중계 시스템, 네트워크, 연계 데이터.\n");
 }

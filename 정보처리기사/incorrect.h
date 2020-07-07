@@ -6,3 +6,8 @@ namespace chapter1 {
 	void section6();
 	void section8();
 }
+
+namespace chapter4 {
+	void section40();
+
+}
