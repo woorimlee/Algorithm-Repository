@@ -9,5 +9,6 @@ namespace chapter1 {
 
 namespace chapter4 {
 	void section40();
-
+	void section42();
+	void section43();
 }
