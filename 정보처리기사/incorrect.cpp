@@ -3,7 +3,6 @@
 #include <cstdio>
 #include <conio.h>
 #pragma warning(disable:4996)
-
 int temp;
 
 void chapter1::section3() {
