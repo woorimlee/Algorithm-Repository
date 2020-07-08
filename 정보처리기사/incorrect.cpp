@@ -175,3 +175,22 @@ void chapter5::section51() {
 	temp = getch();
 	printf("  웹 응용 시스템\n\n");
 }
+
+void chapter5::section52() {
+	printf("52. 서버 개발\n");
+	printf("서버 개발 프레임워크에 대해 서술하시오.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  웹 어플리케이션의 로직을 구현하여 WAS에 탑재할 서버 개발 시에 필요한 기능들(네트워크 설정, 요청 및 응답, 아키텍처 모델링)을\n");
+	printf("  쉽게 처리할 수 있도록 클래스나 인터페이스를 제공하는 소프트웨어다.\n");
+	printf("  보통 MVC(모델-뷰-컨트롤러) 패턴을 기반으로 개발되었다.\n\n");
+	printf("프레임워크의 특징 네 가지와 각각에 대해서 서술하시오.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  1. 모듈화(Modularity) : 캡슐화를 통해 결합도는 약하게, 응집도는 높은 상태로 모듈화를 강화하고,\n");
+	printf("  시스템의 수정 및 유지 관리등이 용이하게 한다.\n");
+	printf("  2. 재사용성(Resuability) : 재사용이 가능한 모듈들을 제공\n");
+	printf("  3. 확장성(Extensibility) : 인터페이스의 다형성(Polimorphism)을 통해 다양한 기능을 가진 앱 개발\n");
+	printf("  4. 제어의 역행(Inversion of Control) : 개발자가 관리해야 할 객체들의 제어 권한을 프레임워크에 넘김\n");
+	printf("  전체적으로 생산성을 향상시키기 위해 사용됨.\n\n");
+}
