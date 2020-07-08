@@ -3,6 +3,7 @@
 #include <cstdio>
 #include <conio.h>
 #pragma warning(disable:4996)
+#pragma once
 int temp;
 
 void chapter1::section3() {
@@ -193,4 +194,25 @@ void chapter5::section52() {
 	printf("  3. 확장성(Extensibility) : 인터페이스의 다형성(Polimorphism)을 통해 다양한 기능을 가진 앱 개발\n");
 	printf("  4. 제어의 역행(Inversion of Control) : 개발자가 관리해야 할 객체들의 제어 권한을 프레임워크에 넘김\n");
 	printf("  전체적으로 생산성을 향상시키기 위해 사용됨.\n\n");
+}
+
+void chapter5::section53() {
+	printf("53. 서버 개발 과정\n");
+	printf("(   )는 서버 프로그램 개발을 위해 생성하는 객체 중 하나로, DB에 접근하고 데이터를 실제로 조작한다.\n");
+	printf("DB를 조작하기 위해서 사용되는 SQL문은 (   )의 내부에 직접 입력되거나, 외부의 XML 문서에 삽입하여 호출하는 방식을 사용한다.\n");
+	printf("(   )에 들어갈 것은?\n");
+	while (!kbhit);
+	temp = getch();
+	printf("  DAO(Data Access Object)\n\n");
+}
+
+void chapter5::section54() {
+	printf("54. 배치 프로그램\n");
+	printf("리눅스의 crontab 명령어를 이용하여 다음의 작업을 처리하는 명령문을 작성하시오.\n");
+	printf("작업 : A사는 3, 6, 9, 12월 마다 수행되어야 하는 데이터 백업 작업을 예약하려한다.\n");
+	printf("해당 작업은 각 월의 25일에 서버 이용이 가장 적은 시간대인 오후 10시 정각에 처음 실행되어 15분마다 총 4회 수행할 예정이다.\n");
+	printf("백업과 관련된 명령어는 /backup/batch.sh 파일에 준비해두었다.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  */15 22 25 */3 * /backup/batch.sh\n\n");
 }
