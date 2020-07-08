@@ -151,3 +151,27 @@ void chapter4::section45_46() {
 	printf("  4. 트리 구조로 구성되어 있어 상위 태그가 여러 개의 하위 태그를 가질 수 있음.\n");
 	printf("  5. 모든 태그는 종료 태그를 가지며, 시작 태그와 종료 태그의 Element(요소) 이름은 동일하다.\n");
 }
+
+void chapter5::section48() {
+	printf("48. 개발 환경 구축\n");
+	printf("웹 서버의 기능 여섯 가지를 서술하시오.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  HTTP(S) 지원 : HyperText Transfer Protocol (Secure). 하이퍼 텍스트 문서를 정송하기 위해 사용하는 프로토콜 지원\n");
+	printf("  통신 기록 : Communication log. 클라이언트 처리 요청들을 로그 파일로 기록\n");
+	printf("  정적 파일 관리 : Managing Static Files. HTML, CSS, 이미지 파일 등을 관리\n");
+	printf("  대역폭 제한 : Bandwith Throttling. 네트워크 트래픽 포화 방지를 위해 응답속도 제한\n");
+	printf("  가상 호스팅 : Virtual Hosting. 하나의 서버로 여러 개의 도메인 이름 연결\n");
+	printf("  인증 : Authentication. 인증받은 사용자인지 확인\n\n");
+}
+
+void chapter5::section51() {
+	printf("51. DMBS 접속\n");
+	printf("(   )은 웹 서버와 웹 어플리케이션 서버로 구성되며, 서비스 규모가 작은 경우\n");
+	printf("Web Server와 WAS를 통합하여 하나의 서버만으로 운용할 수 있다. \n");
+	printf("사용자가 DBMS로부터 데이터를 얻기 위해서는 (   )을 통해야 한다.\n");
+	printf("(   )에 들어갈 용어는?\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  웹 응용 시스템\n\n");
+}

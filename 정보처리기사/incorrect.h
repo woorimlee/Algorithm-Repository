@@ -13,3 +13,8 @@ namespace chapter4 {
 	void section43();
 	void section45_46();
 }
+
+namespace chapter5 {
+	void section48();
+	void section51();
+}
