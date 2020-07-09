@@ -40,4 +40,6 @@ namespace chapter7 {
 	void section66(const std::string& s);
 	void section67(const std::string& s);
 	void section68(const std::string& s);
+	void section69(const std::string& s);
+	void section70(const std::string& s);
 }

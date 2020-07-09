@@ -344,3 +344,21 @@ void chapter7::section68(const std::string& s) {
 	kh();
 	cout << "  1) 테스트 스텁\n  2) 목 오브젝트\n  3) 테스트 슈트(suites)\n  4) 테스트 스크립트\n\n";
 }
+
+void chapter7::section69(const std::string& s) {
+	cout << s;
+	cout << "테스트를 완료한 후에는 발견된 결함에 대해 결함 관리 측정 지표와 속성 값들을 분석하고 향후 어떤 결함이 발생할지를 추정해야 한다.\n";
+	cout << "결함 관리 측정 지표 세 가지를 쓰시오\n";
+	kh();
+	cout << "  1. 결함 분포 (결함 수)\n  2. 결함 추세(결함 수의 추이)\n  3. 결함 에이징(지속 시간 측정)\n\n";
+}
+
+void chapter7::section70(const std::string& s) {
+	cout << s;
+	cout << "앱의 성능 분석(측정 지표 : 처리량, 응답시간, 경과시간, 자원사용률) 도구는 ( 1 ) 도구와 ( 2 ) 도구로 분류.\n";
+	cout << "( 1 ) 도구는 앱에 부하를 가하며 성능 측정 지표를 점검한다. JMeter, LoadUI, OpenSTA\n";
+	cout << "( 2 ) 도구는 앱이 실행됐을 때 시스템 자원의 사용량을 확인하고 분석한다. Scouter, Zabbix\n";
+	cout << "( 1 )과 ( 2 )에 들어갈 용어는?\n";
+	kh();
+	cout << "  ( 1 ) : 성능 테스트\n  ( 2 ) : 시스템 모니터링\n\n";
+}
