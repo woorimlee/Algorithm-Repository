@@ -19,5 +19,10 @@ int main()
 	//chapter6::section56();
 	//chapter6::section60();
 	//chapter6::cp();
+	//chapter7::section63("63. 테스트 기법에 따른 어플리케이션 테스트\n");
+	//chapter7::section65("65. 통합 테스트\n");
+	//chapter7::section66("66. 어플리케이션 테스트 프로세스\n");
+	//chapter7::section67("67. 테스트 케이스 / 테스트 시나리오 / 테스트 오라클\n");
+	chapter7::section68("68. 테스트 자동화 도구\n");
 	return 0;
 }

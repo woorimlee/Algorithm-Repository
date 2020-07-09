@@ -1,3 +1,10 @@
+#include <string>
+#include<windows.h>
+#include <cstdio>
+#include <conio.h>
+#include <iostream>
+#pragma once
+
 namespace chapter1 {
 	void section3();
 	void section4();
@@ -27,3 +34,10 @@ namespace chapter6 {
 	void cp();
 }
 
+namespace chapter7 {
+	void section63(const std::string &s);
+	void section65(const std::string& s);
+	void section66(const std::string& s);
+	void section67(const std::string& s);
+	void section68(const std::string& s);
+}
