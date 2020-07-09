@@ -19,3 +19,11 @@ namespace chapter5 {
 	void section53();
 	void section54();
 }
+
+namespace chapter6 {
+	void section55();
+	void section56();
+	void section60();
+	void cp();
+}
+

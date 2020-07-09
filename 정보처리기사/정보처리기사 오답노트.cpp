@@ -15,5 +15,9 @@ int main()
 	//chapter5::section52();
 	//chapter5::section53();
 	//chapter5::section54();
+	//chapter6::section55();
+	//chapter6::section56();
+	//chapter6::section60();
+	//chapter6::cp();
 	return 0;
 }

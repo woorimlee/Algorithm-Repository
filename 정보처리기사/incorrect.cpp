@@ -2,6 +2,8 @@
 #include<windows.h>
 #include <cstdio>
 #include <conio.h>
+#include <iostream>
+using namespace std;
 #pragma warning(disable:4996)
 #pragma once
 int temp;
@@ -216,3 +218,63 @@ void chapter5::section54() {
 	temp = getch();
 	printf("  */15 22 25 */3 * /backup/batch.sh\n\n");
 }
+
+void chapter6::section55() {
+	printf("55. 사용자 인터페이스\n");
+	printf("UI 설계의 기본 원칙 네 가지에 대해 서술하시오\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  직관성 : 기능을 누구나 쉽게 이해하고 파악할 수 있다.\n");
+	printf("  유효성 : 사용자가 행하고자 하는 목적을 정확하게 달성해야한다.\n");
+	printf("  학습성 : 사용자가 쉽게 이해하고 배워야 한다.\n");
+	printf("  유연성 : 사용자의 행위를 최대한 수용하고 에러를 최소화한다.\n\n");
+}
+
+void chapter6::section56() {
+	printf("56. UI 표준 및 지침\n");
+	printf("웹 사이트 개발 시 고려해야 할 웹의 3요소를 서술하시오.\n");
+	while (!kbhit());
+	temp = getch();
+	printf("  Web Standard 웹 표준 : 웹 사이트의 기술적 중립성을 의미하며, 자바 스크립트, HTML 등에 적용돼야 할 규칙\n");
+	printf("  Web Accessibility 웹 접근성 : 누구나 어느 상황에서 웹 사이트의 모든 정보에 대해 이용할 수 있어야함\n");
+	printf("  Cross browsing 웹 호환성 : 어떤 HW, SW를 사용하더라도 같은 웹사이트에 대해 동등한 서비스를 제공\n\n");
+}
+
+void chapter6::section60() {
+	cout << "60. UI 상세 설계\n";
+	cout << "다음이 무엇에 대한 설명인지 쓰시오.\n";
+	cout << "화면의 정보를 한 눈에 파악하기 위한 시각적인 컨텐츠 모형을 말한다.\n";
+	cout << "일반적으로 테이블 형태로 되어 있고, 위에서부터 아래로 내려가며 정보를 찾을 수 있는 계층형으로 되어있다.\n";
+	while (!kbhit());
+	temp = getch();
+	cout << "  site map\n\n";
+}
+
+void chapter6::cp() {
+	//comprehensive problem
+	cout << "챕터 6 종합 문제.\n";
+	cout << "UI 스타일 가이드 작성과 순서에 대해 서술하시오.\n";
+	while (!kbhit());
+	temp = getch();
+	cout << "  UI 스타일 가이드는 개발자나 디자이너들이 UI를 작성할 때 기준이 되는 규칙을 말함.\n";
+	cout << "  1. 구동 환경 정의 -> 2. 레이아웃 정의 -> 3. 네비게이션 정의 -> 4. 기능 정의(논리적 모델로 상세화) -> 5. 구성 요소 정의(그리드, 버튼)\n\n";
+	
+	cout << "UI 요구사항 확인과 확인 순서에 대해 서술하시오.\n";
+	while (!kbhit());
+	temp = getch();
+	cout << "  UI 요구사항 확인은 새로 개발할 시스템에 필요한 UI 관련 사항을 정의.\n";
+	cout << "  1. 목표 정의(인터뷰) -> 2. 활동사항 정의(비전 일치) -> 3. UI 요구사항 작성(요구사항 확인 -> 정황 시나리오 작성 -> 요구사항 작성)\n\n";
+	
+	cout << "UI 흐름 설계와 순서에 대해서 서술하시오.\n";
+	while (!kbhit());
+	temp = getch();
+	cout << "  UI 흐름 설계는 사용자의 업무적 진행 과정에 대해 UI가 어떤 방식으로 변화하는 지 작성하는 것\n";
+	cout << "  1. 화면에 표현할 기능 작성(기능, 비기능) -> 2. 화면에 입력할 요소 확인 -> 3. UI 유스케이스 설계 -> 4. 기능 및 양식(텍스트, 콤보, 라디오, 체크 박스) 확인\n\n";
+
+	cout << "UI 상세 설계와 순서에 대해 서술하시오.\n";
+	while (!kbhit());
+	temp = getch();
+	cout << "  실제 설계 및 구현을 위해 만들 화면들에 대해 상세히 기술하는 것.\n";
+	cout << "  1. 요구사항 최종 확인 -> 2. 표지 및 개정 이력 작성 -> 3. UI 요구사항과 프로토타입에 기반한 UI 구조 설계 -> 4. 사이트 맵 구조를 설계 -> 5. 필요한 모든 화면을 설계\n\n";
+}
+
