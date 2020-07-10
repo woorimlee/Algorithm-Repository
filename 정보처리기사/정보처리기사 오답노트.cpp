@@ -26,5 +26,9 @@ int main()
 	//chapter7::section68("68. 테스트 자동화 도구\n");
 	//chapter7::section69("69. 결함 관리\n");
 	//chapter7::section70("70. 어플리케이션 성능 분석\n");
+	chapter9::section82("82. 소프트웨어 개발 보안\n");
+	chapter9::section84("84. 세션 통제");
+	chapter9::section85_to_91("85. ~ 91. 오류 종류");
+	chapter9::section92("92. 암호 알고리즘");
 	return 0;
 }
