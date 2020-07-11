@@ -367,6 +367,23 @@ void chapter7::section70(const std::string& s) {
 	cout << "  ( 1 ) : 성능 테스트\n  ( 2 ) : 시스템 모니터링\n\n";
 }
 
+void chapter8::cp(const std::string& s) {
+	//comprehensive problem
+	cout << s;
+	cout << "연습용 링크 : https://www.w3schools.com/sql/trysql.asp?filename=trysql_select_columns" << "\n";
+	cout << "1. Customers 테이블의 Country의 종류를 중복되지 않게 출력하시오.\n";
+	cout << "2. Customers 테이블의 Country의 고유 갯수를 출력하시오.\n";
+	cout << "3. Customers 테이블의 Country의 고유 갯수를 출력하고, 속성 이름을 CountConutry로 바꾸시오.\n";
+	cout << "4. Customers 테이블의 City가 Berlin인 고객의 CustomerID와 CustomerName, City를 출력하시오.\n";
+	cout << "5. Customers 테이블의 City가 Madrid인 사람의 수를 출력하시오.\n";
+	kh();
+	cout << "  1. SELECT DISTINCT Country FROM Customers;\n\n";
+	cout << "  2. SELECT COUNT(DISTINCT Country) FROM Customers;\n\n";
+	cout << "  3. SELECT COUNT(*) AS CountCountry FROM (SELECT DISTINCT Country From Customers); \n     SELECT COUNT(DISTINCT Country) AS CountCountry FROM Customers;\n\n";
+	cout << "  4. SELECT CustomerID, CustomerName, City FROM Customers Where City = 'Berlin';\n\n";
+	cout << "  5. SELECT COUNT(*) FROM Customers WHERE City = 'Madrid';\n\n";
+}
+
 void chapter9::section82(const std::string& s) {
 	cout << s;
 	cout << "다음에서 설명하는 소프트웨어 개발 보안 활동 관련 법령이 무엇인지 작성하시오.\n";

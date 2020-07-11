@@ -44,6 +44,10 @@ namespace chapter7 {
 	void section70(const std::string& s);
 }
 
+namespace chapter8 {
+	void cp(const std::string& s);
+}
+
 namespace chapter9 {
 	void section82(const std::string& s);
 	void section84(const std::string& s);
