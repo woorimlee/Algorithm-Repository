@@ -376,12 +376,37 @@ void chapter8::cp(const std::string& s) {
 	cout << "3. Customers 테이블의 Country의 고유 갯수를 출력하고, 속성 이름을 CountConutry로 바꾸시오.\n";
 	cout << "4. Customers 테이블의 City가 Berlin인 고객의 CustomerID와 CustomerName, City를 출력하시오.\n";
 	cout << "5. Customers 테이블의 City가 Madrid인 사람의 수를 출력하시오.\n";
+	cout << "6. Customers 테이블에서 Brazil의 Rio de Janeiro 혹은 Resende City에 거주하는 모든 고객을 출력하시오.\n";
+	cout << "7. Products 테이블에서 Price가 높은 순서, ProductID가 낮은 순서대로 모든 내용을 출력하시오.\n";
+	cout << "8. Customers 테이블에 Suppliers 테이블에 있는 모든 SupplierName, ContactName, Address, City, Country 속성을 CustomerName, ContactName, Address, City, Country에 집어넣어라.\n";
+	cout << "9. Orders 테이블에 10444, 14, 5, 1997-03-01, 3을 삽입하시오.\n";
+	cout << "10. Employees 테이블에서 Notes가 NULL인 사람의 EmployeeID, Photo를 출력하시오.\n";
 	kh();
 	cout << "  1. SELECT DISTINCT Country FROM Customers;\n\n";
 	cout << "  2. SELECT COUNT(DISTINCT Country) FROM Customers;\n\n";
 	cout << "  3. SELECT COUNT(*) AS CountCountry FROM (SELECT DISTINCT Country From Customers); \n     SELECT COUNT(DISTINCT Country) AS CountCountry FROM Customers;\n\n";
 	cout << "  4. SELECT CustomerID, CustomerName, City FROM Customers Where City = 'Berlin';\n\n";
 	cout << "  5. SELECT COUNT(*) FROM Customers WHERE City = 'Madrid';\n\n";
+	cout << "  6. SELECT * FROM Customers WHERE Country = 'Brazil' AND (City = 'Resende' OR City = 'Rio de Janeiro');\n\n";
+	cout << "  7. SELECT * FROM Products ORDER BY Price DESC, ProductID;\n\n";
+	cout << "  8. INSERT INTO Customers(CustomerName, ContactName, Address, City, Country) SELECT SupplierName, ContactName, Address, City, Country FROM Suppliers;\n\n";
+	cout << "  9. INSERT INTO Orders VALUES (10444, 14, 5, '1997-03-01', 3)\n\n";
+	cout << "  10. SELECT EmployeeID, Photo From Employees WHERE Notes IS NULL;\n\n";
+	
+	cout << "11. [학생정보] 테이블과 [학과인원] 테이블에서 학과가 같은 튜플을 JOIN 하여 이름, 학과, 학생수를 검색하시오.\n";
+	cout << "12. 여가활동 테이블에 이름이 없는(취미활동을 하지 않는) 사람들을 사원 테이블에서 모두 검사하시오.\n";
+	cout << "13. 상여금 테이블에서 상여내역별로 상여금에 대한 일련 번호를 구하시오. 순서는 내림차순으로, 속성명은 NO로 구한다.\n";
+	cout << "14. OrderDetails 테이블에서 OrderID별 Quantity 평균 값을 구하라(속성명은 평균)\n";
+	cout << "15. Customers 테이블에서 Country별 튜플 수를 검색하시오\n";
+	cout << "16. Customers 테이블에서 Country별 튜플의 수가 3개 이상인 수를 검색하시오\n";
+	kh();
+	cout << "  11. SELECT 이름, 학과, 학생수 FROM 학생정보 JOIN 학과인원 ON(학생정보.학과 = 학과인원.학과);\n\n";
+	cout << "  12. SELECT * FROM 사원 WHERE 이름 NOT IN (SELECT 이름 FROM 여가활동);\n\n";
+	cout << "  13. SELECT 상여내역, 상여금, ROW_NUMBER() OVER(PARTITION BY 상여내역 ORDER BY 상여금 DESC) AS NO FROM 상여금;\n\n";
+	cout << "  14. SELECT OrderID, AVG(Quantity) AS 평균 FROM OrderDetails GROUP BY OrderID;\n\n";
+	cout << "  15. SELECT Country, Count(*) FROM Customers GROUP BY Country;\n\n";
+	cout << "  16. SELECT Country, Count(*) FROM Customers GROUP BY Country HAVING COUNT(*) >= 3;\n\n";
+
 }
 
 void chapter9::section82(const std::string& s) {
