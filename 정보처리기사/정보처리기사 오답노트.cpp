@@ -31,5 +31,7 @@ int main()
 	//chapter9::section84("84. 세션 통제");
 	//chapter9::section85_to_91("85 ~ 91. 오류 종류");
 	//chapter9::section92("92. 암호 알고리즘");
+	chapter10::section93("93. 운영체제의 개념\n");
+	chapter10::section95("95. 운영체제의 기본 명령어\n");
 	return 0;
 }

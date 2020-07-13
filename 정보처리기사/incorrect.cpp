@@ -491,3 +491,34 @@ void chapter10::section93(const std::string& s) {
 	cout << "  3. 사용 가능도 : 시스템을 사용할 필요가 있을 때 즉시 사용가능한 정도. 다중 프로그래밍 정도 등의 요소가 좌우함.\n";
 	cout << "  4. 신뢰도 : 시스템이 주어진 문제를 정확하게 해결하는 정도.\n\n";
 }
+
+void chapter10::section95(const std::string& s) {
+	cout << s;
+	cout << "UNIX에서 현재 시스템의 프로세스와 메모리 사용 현황을 표시할 때 사용하는 명령어를 쓰시오.\n";
+	kh();
+	cout << "  top\n\n";
+	
+	cout << "Windows에서 디스크 표면을 트랙과 섹터로 나누어 초기화할 때 사용하는 명령어를 쓰시오.\n";
+	kh();
+	cout << "  format\n\n";
+	
+	cout << "Windows의 명령 프롬프트에서 file.txt 파일의 읽기 전용 속성은 해제하고 숨김 속성은 지정하려고 한다. 명령문을 쓰시오.\n";
+	kh();
+	cout << "  attrib -R+H file.txt\n  +(속성설정), -(속성해제), R(읽기), A(저장,백업), S(시스템 파일), H(숨김)\n\n";
+
+	cout << "Unix에서 abc.txt 파일에 대해 다른 사용자의 읽기, 쓰기 권한을 제거하는 명령문을 쓰시오.\n";
+	kh();
+	cout << "  chmod o-rw abc.txt\n  *u(사용자), g(그룹), o(다른 사용자), a(모두), +(권한 추가), -(권한 삭제), =(권한 부여), r(읽기), w(쓰기), x(실행)\n\n";
+	
+	cout << "Windows에서 C 드라이브에 있는 file1.txt 파일을 file2.txt로 이름을 변경하여 D 드라이브로 이동하는 명령문을 쓰시오.\n";
+	kh();
+	cout << "  move file1.txt D:\\file2.txt\n\n";
+
+	cout << "UNIX에서 현재 디렉토리에 있는 file1.txt 파일을 dir 디렉터리로 이동하되, 파일명을 file2.txt로 바꾸는 명령문을 쓰시오.\n";
+	kh();
+	cout << " mv file1.txt dir/file2.txt\n\n";
+
+	cout << "dir의 옵션 종류를 간단하게 서술하시오. /p, /w, /o, /s\n";
+	kh();
+	cout << "  /p : 목록을 한 화면 단위로, /w : 가로로, /s : 하위 디렉토리까지, /o : 정렬 방식 설정(n 이름, d 날짜, s 크기)\n\n";
+}

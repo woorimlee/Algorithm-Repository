@@ -57,4 +57,5 @@ namespace chapter9 {
 
 namespace chapter10 {
 	void section93(const std::string& s);
+	void section95(const std::string& s);
 }
