@@ -521,4 +521,4 @@ void chapter10::section95(const std::string& s) {
 	cout << "dir의 옵션 종류를 간단하게 서술하시오. /p, /w, /o, /s\n";
 	kh();
 	cout << "  /p : 목록을 한 화면 단위로, /w : 가로로, /s : 하위 디렉토리까지, /o : 정렬 방식 설정(n 이름, d 날짜, s 크기)\n\n";
-}
+} 
