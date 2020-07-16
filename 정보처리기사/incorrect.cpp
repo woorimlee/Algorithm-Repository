@@ -407,6 +407,46 @@ void chapter8::cp(const std::string& s) {
 	cout << "  15. SELECT Country, Count(*) FROM Customers GROUP BY Country;\n\n";
 	cout << "  16. SELECT Country, Count(*) FROM Customers GROUP BY Country HAVING COUNT(*) >= 3;\n\n";
 
+	cout << "17. 아래의 요구사항을 만족하는 테이블 patient를 정의하라.\n";
+	cout << ": id(문자 5), sex(문자 1) 속성을 가지며, id 속성은 기본키이고, sex 속성은 f 또는 m 값만 갖도록 한다.(제약 조건명 : sex_ck)\n";
+	cout << "id는 doctor 테이블에 있는 doc_id를 참조하며, 제약 조건명은 id_fk다.\n";
+	kh();
+	cout << "  17. CREATE TABLE patient (id CHAR(5) PRIMARY KEY, sex CHAR(5),\n";
+	cout << "             CONSTRAINT sex_ck CHECK (sex = 'f' OR sex = 'm'), \n";
+	cout << "             CONSTRAINT id_fk FOREIGN KEY (id) REFERENCES doctor(doc_id));\n\n";
+
+	cout << "18. 아래의 요구사항을 만족하는 테이블 Instructor를 정의하라.\n";
+	cout << ": id(문자 5) 속성을 기본키로, name(문자 15) 속성은 Null이 못오게,\n";
+	cout << "dept(문자 15) 속성은 Department 테이블의 dept 속성을 참조하는 외래키로 만든다.\n";
+	cout << "Department 테이블에서 튜플이 삭제되면 관련된 모든 튜플의 dept 속성 값은 NULL로 변경하고,\n";
+	cout << "Department 테이블에서 dept 속성이 변경되면 Instructor 테이블의 관련된 모든 속성 값도 같은 값으로 변경한다.\n";
+	kh();
+	cout << "  18. CREATE TABLE Instructor ( id CHAR(5) PRIMARY KEY,\n";
+	cout << "             name CHAR(15) NOT NULL,\n";
+	cout << "             dept CHAR(15) FOREIGN KEY REFERENCES Department(dept)\n";
+	cout << "                  ON DELETE SET NULL\n";
+	cout << "                  ON UPDATE CASCADE );\n\n";
+
+	cout << "19. 아래의 요구사항을 만족하는 뷰 CC를 정의하라.\n";
+	cout << ": Course 릴레이션의 instructor 속성과 Instructor 릴레이션의 id 속성이 같은 자료에 대해 view를 만든다.\n";
+	cout << "cc 뷰는 ccid, ccname, instname 속성을 가진다.\n";
+	cout << "cc 뷰는 Course의 id, name, Instructor의 name 속성을 사용한다.\n";
+	kh();
+	cout << "  19. CREATE VIEW CC(ccid, ccname, instname)\n";
+	cout << "             AS SELECT Course.id, Course.name, Instructor.name\n";
+	cout << "             FROM Course, Instructor WHERE Course.instructor = Instructor.id;\n\n";
+
+	cout << "20. 직위 도메인을 만들며 값으로 사원, 대리, 부장, 사장만을 허용하고 기본 값으로 사원을 취하는 도메인 무결성\n";
+	cout << "제약 조건을 설정하라\n";
+	kh();
+	cout << "  20. CREATE DOMAIN 직위 VARCHAR(10)\n";
+	cout << "             DEFALUT '사원' CONSTRAINT VALID-직위 CHECK (VALUE IN ('사원', '대리', '부장', '사장') );\n\n";
+
+	cout << "21. 아래의 SQL에서 직책 부분을 암기하자.\n";
+	kh();
+	cout << "  21. CREATE TABLE 사원 (성명 CHAR(10) UNIQUE,\n";
+	cout << "             직책 CHAR(10) CHECK (직책 IN ('사원', '대리', '사장') ) );\n\n";
+
 }
 
 void chapter9::section82(const std::string& s) {
@@ -521,4 +561,4 @@ void chapter10::section95(const std::string& s) {
 	cout << "dir의 옵션 종류를 간단하게 서술하시오. /p, /w, /o, /s\n";
 	kh();
 	cout << "  /p : 목록을 한 화면 단위로, /w : 가로로, /s : 하위 디렉토리까지, /o : 정렬 방식 설정(n 이름, d 날짜, s 크기)\n\n";
-} 
+}
