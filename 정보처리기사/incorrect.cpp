@@ -447,6 +447,20 @@ void chapter8::cp(const std::string& s) {
 	cout << "  21. CREATE TABLE 사원 (성명 CHAR(10) UNIQUE,\n";
 	cout << "             직책 CHAR(10) CHECK (직책 IN ('사원', '대리', '사장') ) );\n\n";
 
+	cout << "22. 사용자 ID가 NABI인 사람에게 데이터베이스 및 테이블을 생성할 수 있는 권한을 부여하시오.\n";
+	cout << "23. 김하늘에게 학생 테이블에 대한 접근 및 조작에 관한 모든 권한을 부여하는 SQL문을 작성하시오.\n";
+	cout << "24. 김하늘에게 강좌 테이블에 대해 삭제하는 권한을 부여하고, 강좌 테이블에 대해 삭제하는 권한을\n";
+	cout << "다른 사람에게 부여할 수 있는 권한을 부여하시오.\n";
+	cout << "25. 수강 테이블에 대해 임꺽정에게 부여된 UPDATE 권한과 임꺽정이 다른 사람에게 UPDATE 권한을 부여할 수 있는 권한\n";
+	cout << "그리고 임꺽정이 다른 사람에게 부여한 UPDATE 권한도 모두 취소하시오.\n";
+	cout << "26. 학부생 테이블에서 담당관이 이로 시작하는 튜플의 학과번호를 999로 갱신하시오.\n";
+	kh();
+	cout << "  22. GRANT RESOURCE TO NABI;\n\n";
+	cout << "  23. GRANT ALL ON 학생 TO 김하늘;\n\n";
+	cout << "  24. GRANT DELETE ON 강좌 TO 김하늘 WITH GRANT OPTION\n\n";
+	cout << "  25. REVOKE UPDATE ON 수강 FROM 임꺽정 CASCADE;\n";
+	cout << "      (어차피 UPDATE 권한 REVOKE하면 GRANT OPTION도 취소됨. 그래서 생략.)\n\n";
+	cout << "  26. UPDATE 학부생 SET 학과번호 = 999 WHERE 담당관 LIKE '이%'\n\n";
 }
 
 void chapter9::section82(const std::string& s) {
