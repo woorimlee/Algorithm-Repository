@@ -457,10 +457,85 @@ void chapter8::cp(const std::string& s) {
 	kh();
 	cout << "  22. GRANT RESOURCE TO NABI;\n\n";
 	cout << "  23. GRANT ALL ON 학생 TO 김하늘;\n\n";
-	cout << "  24. GRANT DELETE ON 강좌 TO 김하늘 WITH GRANT OPTION\n\n";
+	cout << "  24. GRANT DELETE ON 강좌 TO 김하늘 WITH GRANT OPTION;\n\n";
 	cout << "  25. REVOKE UPDATE ON 수강 FROM 임꺽정 CASCADE;\n";
 	cout << "      (어차피 UPDATE 권한 REVOKE하면 GRANT OPTION도 취소됨. 그래서 생략.)\n\n";
-	cout << "  26. UPDATE 학부생 SET 학과번호 = 999 WHERE 담당관 LIKE '이%'\n\n";
+	cout << "  26. UPDATE 학부생 SET 학과번호 = 999 WHERE 담당관 LIKE '이%';\n\n";
+
+	cout << "27. 학생 정보 테이블의 학번과 신청 정보 테이블의 학번이 같고, 신청과목이 Java인 학생들만을 대상으로\n";
+	cout << "학생정보의 이름, 전공, 신청과목의 신청과목을 검색하려한다.\n";
+	cout << "검색된 데이터는 이름, 전공, 신청 과목을 기준으로 그룹을 지정하되, 전공이 컴퓨터 공학인 그룹만 표시하라\n";
+	kh();
+	cout << "  28. SELECT 이름, 전공, 신청과목 FROM 학생정보, 신청과목 WHERE 학생정보.학번 = 신청정보.학번 AND 신청과목.신청과목 = 'Java'\n";
+	cout << "             GROUP BY 이름, 전공, 신청과목 HAVING 전공 = '컴퓨터공학';\n\n";
+	
+	cout << "28. 결제 테이블(학번, 신청번호, 결제여부)을 이용하여 결제 여부별 학생수를 검색하라.\n";
+	cout << "29. 상여금 테이블에서 상여내역별로 상여금에 대한 일련 번호를 구하시오. 순서는 내림차순.\n";
+	kh();
+	cout << "  28. SELECT 결제여부, COUNT(*) AS 학생수 FROM 결제 GROUP BY 결제여부;\n\n";
+	cout << "  29. SELECT 상여내역, 상여금, ROW_NUMBER() OVER (PARTITION BY 상여내역, 상여금\n";
+	cout << "             ORDER BY 상여금 DESC) FROM 상여금;\n\n";
+
+	cout << "30. 프로시저에 대해서 간단하게 서술하시오.\n";
+	cout << "31. 다음의 조건에 따라 프로시저를 만들어라.\n";
+	cout << ": 프로지서 score_count를 생성하며, 동일한 이름이 있는 경우 기존의 프로시저를 대체한다.\n";
+	cout << "파라미터로 전달받은 정수는 변수 sc에 저장하여 처리되며, 어떠한 값도 반환하지 않는다.\n";
+	cout << "지역변수로 정수형 변수 a를 사용한다.\n";
+	cout << "프로시저가 실행되면 score 테이블의 cont 속성의 값이 sc보다 크거나 같은 튜플의 개수를 조회하여\n";
+	cout << "total 테이블의 mem_count 속성에 입력한다.\n";
+	kh();
+	cout << "  30. 데이터베이스에 저장되어 실행되어 스토어드 프로시저라고도 불린다.\n";
+	cout << "  일종의 트랜잭션 언어로 일련의 SQL 활용하여 일일 마감 작업 등 일괄 작업에 실행된다.\n\n";
+	cout << "  31. CREATE OR REPLACE PROCEDURE score_count(sc IN INT)\n";
+	cout << "      IS\n          a INT;\n";
+	cout << "      BEGIN\n          SELECT count(*) INTO a FROM score WHERE cont >= sc\n";
+	cout << "          INSERT INTO total(mem_count) VALUES(a);\n";
+	cout << "          COMMIT;\n";
+	cout << "      END;\n\n";
+
+	cout << "32. 트리거에 대해서 간단하게 서술하시오.\n";
+	cout << "33. 사원 테이블이 갱신될 때, 갱신된 튜플마다 태도, 성과 속성의 평균을 계산하여 50 이상이면 우수,\n";
+	cout << "아니면 미달을 화면에 출력하는 트리거 사원_tri를 정의하라.\n";
+	kh();
+	cout << "  32. 데이터베이스에 저장되어 실행되며, 삽입 삭제 등의 이벤트가 발생했을 때 정의한 일련의 작업들이 자동으로 실행되는 것.\n";
+	cout << "  보통 로그 메세지 출력, 데이터 무결성 유지를 위해 사용됨.\n\n";
+	cout << "  33. CREATE TRIGER 사원_tri AFTER UPDATE ON 사원\n";
+	cout << "      FOR EACH ROW\n      BEGIN\n";
+	cout << "      IF (태도 + 성과) / 2 >= 50 THEN\n          DBMS_OUTPUT.PUT_LINE('우수');\n";
+	cout << "      ELSE\n          DBMS_OUTPUT.PUT_LINE('미달');\n";
+	cout << "      END IF;\n      END;\n\n";
+
+	cout << "34. 사용자 정의 함수에 대해서 간단하게 서술하시오.\n";
+	cout << "35. i_성별을 입력받아 1이면 남자, 2면 여자를 반환하는 사용자 정의 함수 GET_S_성별 이라는 이름으로 정의하라.\n";
+	kh();
+	cout << "  34. 프로시저처럼 일련의 SQL을 통해 작업을 수행하는 데, 파라미터로는 입력만 받을 수 있고,\n";
+	cout << "  무조건 하나의 값을 RETURN을 통해 반환하며, SELECT만 사용할 수 있다.\n\n";
+	cout << "  35. CREATE FUNCTION GET_S_성별(i_성별 INT)\n";
+	cout << "      RETURN VARCHAR\n      IS\n      BEGIN\n";
+	cout << "          IF i_성별 = 1 THEN\n              RETURN '남자';\n";
+	cout << "          ELSE\n              RETURN '여자';\n          END IF;\n";
+	cout << "      END;\n\n";
+
+	cout << "36. 커서에 대해서 간단하게 서술하시오.\n";
+	cout << "37. 묵시적 커서와 명시적 커서에 대해서 서술하시오.\n";
+	cout << "38. 다음은 학생 테이블에서 국어, 영어 점수의 평균이 20점 이하인 학생의 학생코드와 이름을 출력하는 cs_stu 커서다. 괄호를 채워라\n";
+	cout << "  ( 1 )\n    i_학생코드 INT;\n    c_이름 VARCHAR2(10);\n    ( 2 ) cs_stu\n";
+	cout << "    IS\n    SELECT 학생코드, 이름 FROM 학생 WHERE (국어+영어)/2 <= 20;\n";
+	cout << "  ( 3 )\n    ( 4 ) cs_stu;\n    LOOP\n      ( 5 ) cs_stu ( 6 ) i_학생코드, c_이름;\n";
+	cout << "      EXIT WHEN cs_stu( 7 );\n";
+	cout << "      DBMS_OUTPUT.PUT_LINE(i_학생코드||''||c_이름);\n    END LOOP;    ( 8 ) cs_stu;\n  END;\n\n";
+	cout << "39. DELETE문을 수행한 후 커서의 속성을 활용하여 패치된 튜플의 수를 조회하려 한다. 다음의 빈 칸을 채우시오.\n";
+	cout << "BEGIN\n  DELETE FROM 급여 WHERE 기본급 > 500 AND 부서 IS NULL;\n  DBMS_OUTPUT.PUT_LINE(SQL( ? ) );\nEND;";
+	kh();
+	cout << "  36. 쿼리문의 결과가 저장되어있는 메모리를 가리킬 수 있는 포인터를 말한다. OPEN, FETCH, CLOSE로 실행된다.\n\n";
+	cout << "  37. 묵시적 커서 : 쿼리문을 진행하며 자동으로 만들어지고 진행된다. 정상적인 쿼리문 수행여부 판별을 위해 쓰인다.\n";
+	cout << "      명시적 커서 : 사용자가 직접 정의하고 OPEN -> FETCH -> CLOSE로 진행시킨다. 쿼리문의 튜플을 제어하기 위해 사용된다.\n\n";
+	cout << "  38. ( 1 ) : DECLARE,  ( 2 ) : OPEN,  ( 3 ) : BEGIN,  ( 4 ) : OPEN\n";
+	cout << "  ( 5 ) : FETCH,  ( 6 ) : INTO,  ( 7 ) : %NOTFOUND,  ( 8 ) CLOSE\n\n";
+	cout << "  39. SQL%ROWCOUNT\n\n";
+	
+
+	
 }
 
 void chapter9::section82(const std::string& s) {
