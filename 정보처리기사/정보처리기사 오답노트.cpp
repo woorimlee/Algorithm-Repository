@@ -7,6 +7,7 @@ int main()
 	//chapter1::section6();
 	//chapter1::section8();
 	//chapter1::cp("1장 프로그래밍 언어 활용 종합 문제\n");
+	chapter2::cp("2장 요구사항 확인 종합 문제\n");
 	//chapter4::section40();
 	//chapter4::section42();
 	//chapter4::section43();

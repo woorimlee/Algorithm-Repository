@@ -13,6 +13,10 @@ namespace chapter1 {
 	void cp(const std::string & s);
 }
 
+namespace chapter2 {
+	void cp(const std::string& s);
+}
+
 namespace chapter4 {
 	void section40();
 	void section42();
