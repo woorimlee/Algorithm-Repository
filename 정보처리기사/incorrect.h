@@ -10,6 +10,7 @@ namespace chapter1 {
 	void section4();
 	void section6();
 	void section8();
+	void cp(const std::string & s);
 }
 
 namespace chapter4 {

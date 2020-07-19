@@ -6,6 +6,7 @@ int main()
 	//chapter1::section4();
 	//chapter1::section6();
 	//chapter1::section8();
+	//chapter1::cp("1장 프로그래밍 언어 활용 종합 문제\n");
 	//chapter4::section40();
 	//chapter4::section42();
 	//chapter4::section43();
@@ -26,7 +27,7 @@ int main()
 	//chapter7::section68("68. 테스트 자동화 도구\n");
 	//chapter7::section69("69. 결함 관리\n");
 	//chapter7::section70("70. 어플리케이션 성능 분석\n");
-	chapter8::cp("71 ~ 81. SQL 명령어 종합 문제\n");
+	//chapter8::cp("71 ~ 81. SQL 명령어 종합 문제\n");
 	//chapter9::section82("82. 소프트웨어 개발 보안\n");
 	//chapter9::section84("84. 세션 통제");
 	//chapter9::section85_to_91("85 ~ 91. 오류 종류");

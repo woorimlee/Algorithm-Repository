@@ -89,6 +89,18 @@ void chapter1::section8() {
 
 }
 
+void chapter1::cp(const std::string &s) {
+	cout << s;
+	double p = 1;
+	for (int i = 0; i < 5; i++, p *= i);
+	printf("%.3f\n\n", p);
+	cout << "1. 다음은 선언형 언어에 대한 설명이다. 괄호 ( 1 ), ( 2 )에 들어갈 것은?\n";
+	cout << "선언형 프로그래밍 언어는 ( 1 )와, ( 2 )가 있다. ( 1 ) 의 대표적 언어는 LISP. 병렬 처리에 유리, 재귀를 통한 수학적 함수 문제 해결.\n";
+	cout << "( 2 )의 대표적 언어는 PROLOG. 기초 논리학에 기반을 두고 논리 문장을 이용해 프로그램을 표현.\n";
+	kh();
+	cout << "  1. ( 1 ) : 함수형 언어,  ( 2 ) : 논리형 언어\n\n";
+}
+
 void chapter4::section40() {
 	printf("40. 연계 요구사항 분석\n");
 	printf("통합 구현은 사용자의 요구사항을 해결하고, 새로운 서비스 창출을 위해 모듈 간의 연계와 통합을 의미한다.\n");
