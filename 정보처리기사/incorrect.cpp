@@ -195,10 +195,6 @@ void chapter2::cp(const std::string& s) {
 	cout << "  ( 6 ) : 동기,  ( 7 ) : 비동기,  ( 8 ) : 생성,  ( 9 ) : 응답\n\n";
 	cout << "  11. 링크\n\n";
 	cout << "  12. ( 1 ) : b,  ( 2 ) : c,  ( 3 ) : a\n\n";
-
-	cout << "13. ";
-	kh();
-	cout << "  13. \n\n";
 }
 
 void chapter4::section40() {
