@@ -13,6 +13,7 @@ int main()
 	//chapter4::section42();
 	//chapter4::section43();
 	//chapter4::section45_46();
+	chapter4::cp("4장 통합 구현 종합 문제\n");
 	//chapter5::section48();
 	//chapter5::section51();
 	//chapter5::section52();

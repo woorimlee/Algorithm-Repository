@@ -26,6 +26,7 @@ namespace chapter4 {
 	void section42();
 	void section43();
 	void section45_46();
+	void cp(const std::string& s);
 }
 
 namespace chapter5 {
