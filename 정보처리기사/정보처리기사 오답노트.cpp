@@ -2,17 +2,17 @@
 
 int main()
 {
-	//chapter1::section3();
-	//chapter1::section4();
-	//chapter1::section6();
-	//chapter1::section8();
-	//chapter1::cp("1장 프로그래밍 언어 활용 종합 문제\n");
-	//chapter2::cp("2장 요구사항 확인 종합 문제\n");
-	//chapter3::cp("3장 데이터 입, 출력 구현 종합 문제\n");
-	//chapter4::section40();
-	//chapter4::section42();
-	//chapter4::section43();
-	//chapter4::section45_46();
+	chapter1::section3();
+	chapter1::section4();
+	chapter1::section6();
+	chapter1::section8();
+	chapter1::cp("1장 프로그래밍 언어 활용 종합 문제\n");
+	chapter2::cp("2장 요구사항 확인 종합 문제\n");
+	chapter3::cp("3장 데이터 입, 출력 구현 종합 문제\n");
+	chapter4::section40();
+	chapter4::section42();
+	chapter4::section43();
+	chapter4::section45_46();
 	chapter4::cp("4장 통합 구현 종합 문제\n");
 	//chapter5::section48();
 	//chapter5::section51();
