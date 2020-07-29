@@ -141,7 +141,7 @@ void refVec() {
 
 	//2차원 배열의 특정 위치를 저장하는 vec5 배열.
 	vector <vector <int> > vec5;
-	vec5.push_back({ 5, 10 }); //vec5[0] 번째는 x = 5, y = 3 좌표 값을 저장
+	vec5.push_back({ 5, 10 }); //vec5[0] 번째는 x = 5, y = 10 좌표 값을 저장
 	vec5.push_back({ 1, 9 });
 	vec5.push_back({ 3, 1 });
 	vec5.push_back({ 5, 3 });
