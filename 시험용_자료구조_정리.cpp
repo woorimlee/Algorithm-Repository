@@ -15,6 +15,7 @@
 using namespace std;
 
 void refVec();
+void refStack();
 
 //비교 기준을 내가 직접 만들기 위해선 bool 자료형의 함수를 만든다.
 //v1과 v2 두 개의 매개변수에 대해서 v1을 배열의 왼쪽으로, v2를 배열의 오른쪽으로 보낼 조건을 만들어준다.
@@ -29,7 +30,8 @@ bool comp(vector<int> v1, vector<int> v2) {
 }
 
 int main() {
-	refVec();
+	//refVec();
+	refStack();
 }
 
 void refVec() {
@@ -159,4 +161,14 @@ void refVec() {
 	for (int i = 0; i < vec5.size(); i++) {
 		cout << vec5[i][0] << " " << vec5[i][1] << "\n";
 	}cout << "\n\n";
+}
+
+void refStack() {
+	/* 2. 스택 사용
+	자료구조 형식 stack < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+
+	*/
 }
