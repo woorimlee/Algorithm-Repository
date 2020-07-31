@@ -9,33 +9,58 @@
 #include <set>
 
 //자료구조 정리
-//vector, stack, queue, priority_queue, map, unordered_map, pair, tuple, string, set
+//struct, vector, stack, queue, priority_queue, map, unordered_map, pair, tuple, string, set
 //sort & comp 정리
 
 using namespace std;
 
+void refStruct();
 void refVec();
+bool comp(vector<int> v1, vector<int> v2);
 void refStack();
-
-//비교 기준을 내가 직접 만들기 위해선 bool 자료형의 함수를 만든다.
-//v1과 v2 두 개의 매개변수에 대해서 v1을 배열의 왼쪽으로, v2를 배열의 오른쪽으로 보낼 조건을 만들어준다.
-bool comp(vector<int> v1, vector<int> v2) {
-	if (v1[0] == v2[0]) {
-		//만약 v1[0]번째 값과 v2[0]번째 값이 같으면
-		//v1[1](왼쪽에 있는 것)이 v2[1](오른쪽에 있는 것)보다 큰 상태로 배열을 정렬해달라.
-		return v1[1] > v2[1];
-	}
-	//나머지 경우엔 v1[0](왼쪽에 있는 것)이 v2[0](오른쪽에 있는 것)보다 작은 상태로 배열을 정렬해달라.
-	return v1[0] < v2[0];
-}
+void refQueue();
+void refPriority_Queue();
+void refMap();
+void refUnorderd_Map();
+void refPair();
+void refTuple();
+void refString();
+void refSet();
 
 int main() {
+	//refStruct();
 	//refVec();
-	refStack();
+	//refPriority_Queue();
+}
+
+struct make_struct {
+	int x, y;
+	string node_name;
+	float value;
+	make_struct(int x, int y, float val, string name) : x{ x }, y{ y }, value{ val }, node_name{ name }{}
+	//변수 x에 입력받은 x를 넣고, 변수 y에 입력받은 y를 넣고, value에 입력받은 val을 넣고 ...
+};
+struct make_struct2 {
+	int x, y;
+	string name;
+};
+void refStruct() {
+	/* 1. 구조체 초기화 방법
+	중괄호 초기화라는 것을 사용할 것임.
+	지금 알려주는 방법은 가장 무난한 정석 방법이며, 인수를 생략한 중괄호 초기화, 생성자 등의 다른 방법도 존재한다.
+	make_struct와 make_struct2를 참고하자
+	*/
+
+	make_struct ms{ 5, 10, 3.9, "first" }; 
+	make_struct2 ms2{ 3, 4, "second" }; //중괄호 초기화 등이 없는 경우 구조체에 만든 변수 순서대로 값이 들어간다.
+	//즉, ms2의 x는 3, y는 4, name은 second
+	cout << ms.x << " " << ms.y << " " << ms.node_name << " " << ms.value << "\n";
+	cout << ms2.x << " " << ms2.y << " " << ms2.name << "\n";
+	
 }
 
 void refVec() {
-	/* 1. 벡터 사용
+	/* 2. 벡터 사용
 	자료구조 형식 vector < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
@@ -156,19 +181,133 @@ void refVec() {
 		cout << vec5[i][0] << " " << vec5[i][1] << "\n";
 	}cout << "\n";
 	//그냥 정렬하면 원하는 결과 값이 안나옴. y 좌표도 오름차순 정렬이 적용됐기 때문.
-	//sort 함수에는 정렬하는 기준을 정의해주는 함수를 만들수 있음. 위의 comp 함수를 참고.
+	//sort 함수에는 정렬하는 기준을 정의해주는 함수를 만들수 있음. 아래의 comp 함수를 참고.
 	sort(vec5.begin(), vec5.end(), comp); //sort의 세 번째 인자로 내가 만든 함수를 넘긴다.
 	for (int i = 0; i < vec5.size(); i++) {
 		cout << vec5[i][0] << " " << vec5[i][1] << "\n";
 	}cout << "\n\n";
 }
+//비교 기준을 내가 직접 만들기 위해선 bool 자료형의 함수를 만든다.
+//v1과 v2 두 개의 매개변수에 대해서 v1을 배열의 왼쪽으로, v2를 배열의 오른쪽으로 보낼 조건을 만들어준다.
+bool comp(vector<int> v1, vector<int> v2) {
+	if (v1[0] == v2[0]) {
+		//만약 v1[0]번째 값과 v2[0]번째 값이 같으면
+		//v1[1](왼쪽에 있는 것)이 v2[1](오른쪽에 있는 것)보다 큰 상태로 배열을 정렬해달라.
+		return v1[1] > v2[1];
+	}
+	//나머지 경우엔 v1[0](왼쪽에 있는 것)이 v2[0](오른쪽에 있는 것)보다 작은 상태로 배열을 정렬해달라.
+	return v1[0] < v2[0];
+}
 
 void refStack() {
-	/* 2. 스택 사용
+	/* 3. 스택 사용
 	자료구조 형식 stack < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
 	자주 쓰는 함수
 
 	*/
+}
+
+void refPriority_Queue() {
+	/* 5. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
+	자료구조 형식 priority_queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	empty() : 비어있으면 true, 아니면 false return. O(1)
+	size() : 크기 반환. O(1)
+	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
+	push() : 우선순위 큐에 값 삽입. At most O(N)
+	pop() : top에 있는 값 삭제. At most O(N)
+	*/
+
+	priority_queue <int> pq1;
+	pq1.push(10); pq1.push(20); pq1.push(1);
+	while (!pq1.empty()) {
+		cout << pq1.top() << " ";
+		pq1.pop();
+	}cout << "\n\n";
+
+	//오름차순으로 만드는 방법 1
+	priority_queue <int, vector<int>, greater<int> > pq2 ;
+	//방법 2
+	priority_queue <int, vector<int> > pq3;
+	pq2.push(10); pq2.push(20); pq2.push(1);
+	pq3.push(-10); pq3.push(-20); pq3.push(-1); // 곱하기 -1을 해줌.
+	while (!pq2.empty()) {
+		cout << pq2.top() << " ";
+		pq2.pop();
+	}cout << "\n";
+	while (!pq3.empty()) {
+		cout << pq3.top() << " ";
+		pq3.pop();
+	}cout << "\n\n";
+
+	vector <int> myvec = { 10, 20, 6, 1, -5 };
+	priority_queue <int> pq4(myvec.begin(), myvec.end());
+	while (!pq4.empty()) {
+		cout << pq4.top() << " ";
+		pq4.pop();
+	}cout << "\n\n";
+}
+
+void refMap() {
+	/* 6. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
+	자료구조 형식 priority_queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	empty() : 비어있으면 true, 아니면 false return. O(1)
+	size() : 크기 반환. O(1)
+	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
+	push() : 우선순위 큐에 값 삽입. At most O(N)
+	pop() : top에 있는 값 삭제. At most O(N)
+	*/
+}
+
+void refUnordered_Map() {
+	/* 7. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
+	자료구조 형식 priority_queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	empty() : 비어있으면 true, 아니면 false return. O(1)
+	size() : 크기 반환. O(1)
+	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
+	push() : 우선순위 큐에 값 삽입. At most O(N)
+	pop() : top에 있는 값 삭제. At most O(N)
+	*/
+
+}
+
+void refTuple() {
+	/* 9. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
+	자료구조 형식 priority_queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	empty() : 비어있으면 true, 아니면 false return. O(1)
+	size() : 크기 반환. O(1)
+	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
+	push() : 우선순위 큐에 값 삽입. At most O(N)
+	pop() : top에 있는 값 삭제. At most O(N)
+	*/
+
+}
+
+void refSet() {
+	/* 11. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
+	자료구조 형식 priority_queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	empty() : 비어있으면 true, 아니면 false return. O(1)
+	size() : 크기 반환. O(1)
+	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
+	push() : 우선순위 큐에 값 삽입. At most O(N)
+	pop() : top에 있는 값 삭제. At most O(N)
+	*/
+
+
 }
