@@ -37,8 +37,10 @@ int main() {
 	//refStruct();
 	//refVec();
 	//refPriority_Queue();
-	refMap();
-	refUnordered_Map();
+	//refMap();
+	//refUnordered_Map();
+	//refTuple();
+	//refSet();
 }
 
 struct make_struct {
@@ -266,7 +268,7 @@ void refMap() {
 	pair 형식으로 들어가서 key는 first, value는 second로 접근가능
 	K와 T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 	map자료구조는 Key를 기준으로 정렬한다.
-	정렬을 하기 때문에 기본적으로 자료구조가 느리다.
+	균형 이진트리로 구현되기 때문에 기본적으로 정렬을 수행하고, 따라서 자료구조가 느리다.
 
 	자주 쓰는 함수
 	begin() : 위와 동
@@ -281,8 +283,8 @@ void refMap() {
 	count() : Key를 넘겨 해당하는 값이 있으면 1을, 없으면 0을 return. O(logN)
 	★ lower_bound() : lower_bound와 upper_bound()는 algorithm 헤더에도 있는 함수로,
 	이진 탐색 기반의 탐색 함수다. (탐색할 곳은 정렬이 되어있어야 이진 탐색이 가능)
-	순환 가능한 자료구조에서 함수에 넘겨준 값을 찾으며, 그 값이 없으면 그 값보다 큰 가장 작은 값의 위치를 찾는다.
-	★ upper_bound() : 함수에 넘겨준 값을 초과하는 첫 번째 원소의 위치를 찾는다.
+	순환 가능한 자료구조에서 함수에 넘겨준 값을 찾으며, 그 값이 없으면 그 값보다 큰 가장 작은 값의 위치를 찾는다. O(logN)
+	★ upper_bound() : 함수에 넘겨준 값을 초과하는 첫 번째 원소의 위치를 찾는다. O(logN)
 	*/
 
 	//map 선언 및 초기화
@@ -391,32 +393,80 @@ void refUnordered_Map() {
 }
 
 void refTuple() {
-	/* 9. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
-	자료구조 형식 priority_queue < T > 변수 이름;
+	/* 9. 튜플 : pair를 확장한 자료형 tuple은 2 개 이상의 값을 한 번에 저장 가능.
+	자료구조 형식 tuple < T1, T2, ... > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
 	자주 쓰는 함수
-	empty() : 비어있으면 true, 아니면 false return. O(1)
-	size() : 크기 반환. O(1)
-	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
-	push() : 우선순위 큐에 값 삽입. At most O(N)
-	pop() : top에 있는 값 삭제. At most O(N)
+	get() : 멤버함수 아님. get<i>(변수) 형식으로 쓰며, 변수의 i번째 위치의 참조자를 반환한다.
+	make_tuple() : 멤버함수 아님. 튜플 만드는 함수.
 	*/
+	tuple <string, int, int> Node;
+	Node = make_tuple("first", 3, 6);
+	auto [a, b, c] = Node; //C++17 문법. 구조적 바인딩. 구조체나 자료구조의 값들을 변수에 자동 할당.
+	cout << a << " : " << b << ", " << c << "\n\n";
+	//위의 구조적 바인딩이 지원되지 않으면, 아래와 같이 튜플 사용
+	
+	string d = std::get<0>(Node); //0번째 위치의 참조자 반환(값을 수정할 수 있음).
+	std::get<1>(Node) = 5;
+	int e = get<1>(Node);
+	int f = get<2>(Node);
+	cout << d << " : " << e << ", " << f << "\n\n";
 
+	queue <tuple <int, int, int> > q; //x, y, value 값을 저장해야 하는 경우
+	q.push(make_tuple(3, 4, 5));
+	q.push({ 10, -5, 1 });
+	q.push({ 0, 9, 19 });
+
+	int q_size = q.size();
+	while (q_size--) {
+		auto [x, y, val] = q.front();
+		q.pop();
+		cout << "x : " << x << ", y : " << y << ", 값 : " << val << "\n";
+	}cout << "\n";
 }
 
 void refSet() {
-	/* 11. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
-	자료구조 형식 priority_queue < T > 변수 이름;
+	/* 11. 셋 :	중복을 허용하지 않는 값들을 저장하는 자료구조.
+	자료구조 형식 set <	T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	균형 이진 트리로 구현됨. 따라서 자동 정렬(오름차순), 노드 기반 자료구조.
 
-	자주 쓰는 함수
-	empty() : 비어있으면 true, 아니면 false return. O(1)
-	size() : 크기 반환. O(1)
-	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
-	push() : 우선순위 큐에 값 삽입. At most O(N)
-	pop() : top에 있는 값 삭제. At most O(N)
+	자주 쓰는 함수. 
+	begin() : map과 동일
+	end() : map과 동일
+	empty() : map과 동일
+	size() : map과 동일
+	insert() : map과 동일
+	erase() : map과 동일
+	clear() : map과 동일
+	find() : map과 동일
+	count() : map과 동일
+	lower_bound() : map과 동일
+	upper_bound() : map과 동일
 	*/
 
+	int arr[] = { 1, 5, 7, 7, 10, 7, 9, 11, 3, 3 };
+	set <int> s1(arr, arr + sizeof(arr) / sizeof(int));
+	
+	//자동 정렬, 중복된 값은 없어짐을 확인할 수 있다.
+	for (auto it : s1) {
+		cout << it << ", ";
+	}cout << "\n\n";
 
+	set <string> s2;
+	s2.insert("apple");
+	s2.insert("banana");
+	s2.insert("kiwi");
+	s2.insert("pig");
+	for (auto it : s2) {
+		cout << it << ", ";
+	}cout << "\n";
+	s2.insert("apple");
+	s2.insert("banana");
+	for (auto it : s2) {
+		cout << it << ", ";
+	}cout << "\n\n";
+
+	//나머지 사용법은 map을 참고해서 비슷하게 사용한다.
 }
