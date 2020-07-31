@@ -1,5 +1,5 @@
 #include <iostream>
-#include <vector>
+#include <vector> 
 #include <stack>
 #include <queue>
 #include <string>
@@ -8,9 +8,15 @@
 #include <tuple>
 #include <set>
 
-//자료구조 정리
-//struct, vector, stack, queue, priority_queue, map, unordered_map, pair, tuple, string, set
-//sort & comp 정리
+/* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+자료구조 정리
+struct, vector, stack, queue, priority_queue, map, unordered_map, pair, tuple, string, set
+sort & compare 함수 만드는 법 정리
+
+//사용 방법 : 아래의 ref함수에서 각 자료구조를 정리했다.
+각 함수의 설명을 읽어보고 코드를 이해한 뒤, main 함수에서 실행시켜 결과값을 확인해보자.
+또한, ref 함수들에서 필요한 함수 등은 그 근처에 정의해뒀으니 함께 살펴보자.
+*/ ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 using namespace std;
 
@@ -21,7 +27,7 @@ void refStack();
 void refQueue();
 void refPriority_Queue();
 void refMap();
-void refUnorderd_Map();
+void refUnordered_Map();
 void refPair();
 void refTuple();
 void refString();
@@ -31,6 +37,8 @@ int main() {
 	//refStruct();
 	//refVec();
 	//refPriority_Queue();
+	refMap();
+	refUnordered_Map();
 }
 
 struct make_struct {
@@ -253,32 +261,133 @@ void refPriority_Queue() {
 }
 
 void refMap() {
-	/* 6. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
-	자료구조 형식 priority_queue < T > 변수 이름;
-	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	/* 6. 맵 : Key와 Value의 1:1 매칭 자료구조.
+	자료구조 형식 map < K, T > 변수 이름; 
+	pair 형식으로 들어가서 key는 first, value는 second로 접근가능
+	K와 T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	map자료구조는 Key를 기준으로 정렬한다.
+	정렬을 하기 때문에 기본적으로 자료구조가 느리다.
 
 	자주 쓰는 함수
-	empty() : 비어있으면 true, 아니면 false return. O(1)
-	size() : 크기 반환. O(1)
-	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
-	push() : 우선순위 큐에 값 삽입. At most O(N)
-	pop() : top에 있는 값 삭제. At most O(N)
+	begin() : 위와 동
+	end() : 위와 동
+	empty() : 위와 동
+	size() : 위와 동
+	at() : 함수에 넘긴 값과 같은 값을 가진 키의 Value 참조자를 리턴.(아래 사용 예시 확인) O(logN)
+	insert() : Key랑 Value pair 형식으로 자료구조에 삽입. At most O(logN)
+	erase() : Key를 넘기든, 반복자를 넘기든, 반복자 범위를 넘겨서 해당하는 Key 삭제. O(1) ~ O(N)
+	clear() : map에 있는 모든 elements 다 삭제하고 사이즈를 0으로 바꿈. O(N)
+	find() : Key를 찾아 값이 있으면 그 위치의 iterator 반환. O(logN)
+	count() : Key를 넘겨 해당하는 값이 있으면 1을, 없으면 0을 return. O(logN)
+	★ lower_bound() : lower_bound와 upper_bound()는 algorithm 헤더에도 있는 함수로,
+	이진 탐색 기반의 탐색 함수다. (탐색할 곳은 정렬이 되어있어야 이진 탐색이 가능)
+	순환 가능한 자료구조에서 함수에 넘겨준 값을 찾으며, 그 값이 없으면 그 값보다 큰 가장 작은 값의 위치를 찾는다.
+	★ upper_bound() : 함수에 넘겨준 값을 초과하는 첫 번째 원소의 위치를 찾는다.
 	*/
+
+	//map 선언 및 초기화
+	map <string, vector<string> > m = {
+		{"Red", {"Apple", "Strawberry"}},
+		{"Green", {"Kiwi"}},
+		{"Yellow", {}},
+		{"Purple", {}}
+	};
+	vector <string> fruit = m["Red"]; //map m의 키 "Red"에 있는 Value를 가져옴.
+	//Value 형태가 vector<string>이라 반환 값을 저장할 fruit 변수의 자료형을 위와 같이 선언.
+	for (int i = 0; i < fruit.size(); i++) {
+		cout << fruit[i] << ", ";
+	}cout << "\n\n";
+
+	//특정 key에 있는 값 수정
+	m["Yellow"] = { "Mango", "Pineapple" };
+	m["Green"].push_back("Watermellon"); //value 형태가 vector라 push_back 함수 사용 가능
+	for (auto it : m["Yellow"]) { // begin과 end가 있는 순환 자료구조에서 맨 앞부터 하나씩 값을 탐색하는 쉬운 방법
+		cout << it << ", ";
+	}cout << "\n\n";
+	for (auto it : m["Green"]) {
+		cout << it << ", ";
+	}cout << "\n\n";
+
+	m.at("Purple") = { "Plum" };
+	m.insert({ "Pink", { "Peach" } }); //pair 형태로 map 자료구조에 삽입. 앞에 것이 Key, 뒤에 것이 Value
+	auto result = m.find("Purple");
+	if (result != m.end()) { 
+		cout << result->first << " : " << (*result).second[0] << "\n\n";
+	}
+	else {
+		cout << "Element가 없습니다.\n\n";
+	}
+
+	map <char, char> m2;
+	m2['a'] = 'A';
+	m2['b'] = 'B';
+	m2['d'] = 'D';
+	m2['h'] = 'H';
+	for (char i = 'a'; i <= 'h'; i++) {
+		cout << i;
+		if (m2.count(i) > 0) 
+			cout << " 는 m2에 있습니다. 값 : " << m2[i] << "\n";
+		else
+			cout << " 는 m2에 없습니다.""\n";
+	}cout << "\n";
+	m2['c'] = 'C';
+	m2['e'] = 'E';
+
+	map<char, char>::iterator it;
+	m2.erase('a'); //key a에 해당하는 element 삭제
+	it = m2.find('b');
+	m2.erase(it); //'b'의 반복자 위치를 넘겨서 삭제
+	for (auto it : m2) {
+		cout << it.first << " " << it.second << "\n";
+	}
+	m2.erase(m2.begin(), m2.end());
+	if (m2.empty()) {
+		cout << "m2는 비어있습니다.\n\n";
+	}
+
+	map <int, int> m3;
+	m3[1] = 50;
+	m3[5] = 250;
+	m3[10] = 500;
+	m3[7] = 350;
+	cout << m3.lower_bound(5)->second << "\n";
+	cout << m3.upper_bound(5)->second << "\n";
+	cout << m3.lower_bound(8)->second << "\n";
+	cout << m3.upper_bound(8)->second << "\n";
+	cout << m3.lower_bound(10)->second << "\n";
+	//cout << m3.upper_bound(10)->second << "\n"; 잘못된 접근
+	cout << "\n";
 }
 
 void refUnordered_Map() {
-	/* 7. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
-	자료구조 형식 priority_queue < T > 변수 이름;
-	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	/* 7. 정렬 안 된 맵 : Key와 Value의 1:1 매칭 자료구조.
+	자료구조 형식 unordered_map < K, T > 변수 이름; 
+	pair 형식으로 들어가서 key는 first, value는 second로 접근가능
+	K와 T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	Key 값을 기준으로 정렬할 필요가 없는 경우, Unordered_map을 사용해서 속도를 향상시키자.
+	at, find 같은 함수는 당연히 더 느림(정렬 안 된 상태이니까)
 
 	자주 쓰는 함수
-	empty() : 비어있으면 true, 아니면 false return. O(1)
-	size() : 크기 반환. O(1)
-	top() : 맨 앞에 있는(우선순위 가장 높은) 값 반환. O(1)
-	push() : 우선순위 큐에 값 삽입. At most O(N)
-	pop() : top에 있는 값 삭제. At most O(N)
+	begin() : 위와 동
+	end() : 위와 동
+	empty() : 위와 동
+	size() : 위와 동
+	at() : At most O(N)
+	insert() : At most O(N * (size + 1)). N == 넣을 값의 수, size == map size.
+	erase() : At most O(N)
+	clear() : O(N)
+	find() : At most O(N)
+	count() : At most O(N)
 	*/
 
+	unordered_map <char, string> um = {
+		{'a', "apple"},
+		{'b', "banana"}
+	};
+	um['c'] = "Cherry";
+	for (auto it : um) {
+		cout << it.first << " : " << it.second << "\n";
+	}cout << "\n";
 }
 
 void refTuple() {
