@@ -10,7 +10,7 @@
 
 /* ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 자료구조 정리
-struct, vector, stack, queue, priority_queue, map, unordered_map, pair, tuple, string, set
+struct, vector, stack, queue, deque, priority_queue, map, unordered_map, pair, tuple, string, set
 sort & compare 함수 만드는 법 정리
 
 //사용 방법 : 아래의 ref함수에서 각 자료구조를 정리했다.
@@ -21,25 +21,31 @@ sort & compare 함수 만드는 법 정리
 using namespace std;
 
 void refStruct();
-void refVec();
+void refString();
+void refVector();
 bool comp(vector<int> v1, vector<int> v2);
+void refPair();
+void refTuple();
 void refStack();
 void refQueue();
+void refDeque();
 void refPriority_Queue();
 void refMap();
 void refUnordered_Map();
-void refPair();
-void refTuple();
-void refString();
 void refSet();
 
 int main() {
 	//refStruct();
-	//refVec();
+	//refString();
+	//refVector();
+	//refPair();
+	//refTuple();
+	//refStack();
+	//refQueue();
+	//refDeque();
 	//refPriority_Queue();
 	//refMap();
 	//refUnordered_Map();
-	//refTuple();
 	//refSet();
 }
 
@@ -65,15 +71,94 @@ void refStruct() {
 	make_struct ms{ 5, 10, 3.9, "first" }; 
 	make_struct2 ms2{ 3, 4, "second" }; //중괄호 초기화 등이 없는 경우 구조체에 만든 변수 순서대로 값이 들어간다.
 	//즉, ms2의 x는 3, y는 4, name은 second
+	cout << "1. 구조체 초기화\n";
 	cout << ms.x << " " << ms.y << " " << ms.node_name << " " << ms.value << "\n";
-	cout << ms2.x << " " << ms2.y << " " << ms2.name << "\n";
-	
+	cout << ms2.x << " " << ms2.y << " " << ms2.name << "\n\n";
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void refVec() {
-	/* 2. 벡터 사용
+void refString() {
+	/* 2. String 사용 
+	자료구조 형식 String 변수 이름;
+
+	자주 쓰는 함수
+	begin() : 첫 char 이터레이터 반환. Generally O(1)
+	end() : 마지막 char의 다음 위치 이터레이터 반환. Generally O(1)
+	rbegin() : 맨 마지막 char 이터레이터 반환. (거꾸로 탐색하는 reverse_iterator랑 사용) Generally O(1)
+	rend() : 맨 첫 char 이터레이터의 이전 위치 반환. Generally O(1)
+	size() : == length(). 문자열 길이 반환. O(1)
+	resize() : 스트링 길이 재정의. O(N)
+	clear() : 다 지움. empty string으로 바꿈. Generally O(1)
+	empty() : 비어있으면 true, 아니면 false. O(1)
+	front() : 맨 처음 위치의 char reference 참조자(값 확인 및 수정 가능) 반환. O(1)
+	back() : 맨 마지막 위치의 char reference 참조자 반환. O(1)
+	at() : 몇 번째 위치에 있는 char 반환. O(1)
+	append() : string에 문자열 더해서 확장하기. 그냥 + 연산자를 쓰자. O(N)
+	push_back() : 문자 하나 맨 끝에 더하기. Generally O(1) Up to O(N)
+	pop_back() : 맨 마지막 글자 빼기. Generally O(1)
+	insert() : 특정 위치에 string 삽입. Generally O(N)
+	erase() : 특정 위치 혹은 구간의 char 제거. Generally O(N)
+	replace() : 특정 구간 문자 바꾸기. Generally O(N)
+	find() : 문자열 안에서 문자 혹은 문자열 찾아 그 위치를 반환. Uo to O((N-pos) * M(찾는문자길이))
+	substr() : 특정 위치부터 몇 개의 문자를 묶어서 문자열 반환. O(N)
+	*/
+
+	string s0 = "Hello String";
+	string s1(s0, 6, 3); // s0의 여섯번째부터 세 개
+	string s2(10, '^');
+	string s3 = s1 + s2;
+	cout << "1. 초기화\n";
+	cout << s0 << "\n" << s1 << "\n" << s2 << "\n" << s3 << "\n";
+	
+	cout << "2. 순환\n";
+	for (string::iterator it = s0.begin(); it != s0.end(); it++) {
+		cout << *it;
+	}cout << "\n";
+	for (string::reverse_iterator rit = s0.rbegin(); rit != s0.rend(); rit++) {
+		cout << *rit;
+	}cout << "\n\n";
+
+	string s4 = "Language C++";
+	int len = s4.size();
+	cout << "3. 리사이즈\n";
+	s4.resize(len - 2);
+	cout << s4 << "\n";
+	s4.resize(s4.size() + 2, '+'); //사이즈를 늘려서 거기에 어떤 문자를 채움
+	cout << s4 << "\n\n";
+
+	cout << "4. clear & empty\n";
+	s4.clear();
+	if (s4.empty()) {
+		cout << "s4는 비어있다.\n\n";
+	}
+	
+	cout << "5. front & back\n";
+	s0.front() = 'h';
+	s0.back() = 'G';
+	cout << s0 << "\n\n";
+
+	cout << "6. insert & erase & replace\n";
+	s0.insert(6, "C++ "); //여섯번 째 위치에 "C++ " 삽입
+	cout << s0 << "\n";
+	s0.erase(6, 2); //C+ 제거
+	cout << s0 << "\n"; 
+	s0.erase(s0.begin() + 6); //특정 위치에 있는 문자(+) 제거
+	cout << s0 << "\n";
+	s0.replace(5, 2, "_");
+	cout << s0 << "\n\n";
+
+	cout << "7. substr, find\n";
+	cout << s0.substr(6, 3) << " "; //여섯번째 위치부터 세 개
+	int pos = s0.find("St");
+	cout << s0.substr(pos) << "\n\n"; 
+	//위치만 정해주고 길이를 정해주지 않으면 맨 마지막 문자까지 substr 반환.
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void refVector() {
+	/* 3. 벡터 사용
 	자료구조 형식 vector < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
@@ -177,7 +262,7 @@ void refVec() {
 			cout << vec4[i][j] << " ";
 		}
 		cout << "\n";
-	}cout << "\n\n";
+	}cout << "\n";
 
 	//2차원 배열의 특정 위치를 저장하는 vec5 배열.
 	vector <vector <int> > vec5;
@@ -198,7 +283,28 @@ void refVec() {
 	sort(vec5.begin(), vec5.end(), comp); //sort의 세 번째 인자로 내가 만든 함수를 넘긴다.
 	for (int i = 0; i < vec5.size(); i++) {
 		cout << vec5[i][0] << " " << vec5[i][1] << "\n";
-	}cout << "\n\n";
+	}cout << "\n";
+
+	//2차원으로 사용하는 방법 2
+	const int len = 5;
+	vector <int> vec6[len];
+	vec6[0].push_back(10);
+	vec6[0].push_back(11);
+	vec6[1].push_back(3);
+	vec6[1].push_back(8);
+	vec6[2].push_back(1);
+	vec6[2].push_back(9);
+	vec6[4].push_back(1);
+	vec6[4].push_back(5);
+	vec6[4].push_back(12);
+	cout << "12.\n";
+	for (int i = 0; i < len; i++) {
+		cout << "vec6의 " << i << "번째 : ";
+		for (int j = 0; j < vec6[i].size(); j++) {
+			cout << vec6[i][j] << " ";
+		}cout << "\n";
+	}
+	cout << "\n";
 }
 //비교 기준을 내가 직접 만들기 위해선 bool 자료형의 함수를 만든다.
 //v1과 v2 두 개의 매개변수에 대해서 v1을 배열의 왼쪽으로, v2를 배열의 오른쪽으로 보낼 조건을 만들어준다.
@@ -214,8 +320,66 @@ bool comp(vector<int> v1, vector<int> v2) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void refPair() {
+	/* 4. 페어 사용
+	자료구조 형식 queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	대부분의 경우 O(1)
+	push_back() : 벡터에 값을 넣는 함수
+	pop_back() : 벡터 마지막에 있는 값 삭제
+	size() : vector 크기를 return
+	resize() : 벡터의 사이즈를 변경. O(N)
+	front() : 맨 처음 원소 return
+	back() : 맨 마지막 원소 return
+	clear() : 벡터 내부 내용 삭제. O(N)
+	insert() : 특정 위치에 값 삽입. O(N)
+	begin() : 벡터 시작 위치(반복자 형식) 리턴
+	end() : 벡터 마지막 위치의 다음 위치(반복자 형식) 리턴
+	*/
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void refTuple() {
+	/* 5. 튜플 : pair를 확장한 자료형 tuple은 2 개 이상의 값을 한 번에 저장 가능.
+	자료구조 형식 tuple < T1, T2, ... > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	get() : 멤버함수 아님. get<i>(변수) 형식으로 쓰며, 변수의 i번째 위치의 참조자를 반환한다.
+	make_tuple() : 멤버함수 아님. 튜플 만드는 함수.
+	*/
+	tuple <string, int, int> Node;
+	Node = make_tuple("first", 3, 6);
+	auto [a, b, c] = Node; //C++17 문법. 구조적 바인딩. 구조체나 자료구조의 값들을 변수에 자동 할당.
+	cout << a << " : " << b << ", " << c << "\n\n";
+	//위의 구조적 바인딩이 지원되지 않으면, 아래와 같이 튜플 사용
+
+	string d = std::get<0>(Node); //0번째 위치의 참조자 반환(값을 수정할 수 있음).
+	std::get<1>(Node) = 5;
+	int e = get<1>(Node);
+	int f = get<2>(Node);
+	cout << d << " : " << e << ", " << f << "\n\n";
+
+	queue <tuple <int, int, int> > q; //x, y, value 값을 저장해야 하는 경우
+	q.push(make_tuple(3, 4, 5));
+	q.push({ 10, -5, 1 });
+	q.push({ 0, 9, 19 });
+
+	int q_size = q.size();
+	while (q_size--) {
+		auto [x, y, val] = q.front();
+		q.pop();
+		cout << "x : " << x << ", y : " << y << ", 값 : " << val << "\n";
+	}cout << "\n";
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refStack() {
-	/* 3. 스택 사용
+	/* 6. 스택 사용
 	자료구조 형식 stack < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
@@ -227,7 +391,29 @@ void refStack() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refQueue() {
-	/* 4. 큐 사용
+	/* 7. 큐 사용
+	자료구조 형식 queue < T > 변수 이름;
+	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+
+	자주 쓰는 함수
+	대부분의 경우 O(1)
+	push_back() : 벡터에 값을 넣는 함수
+	pop_back() : 벡터 마지막에 있는 값 삭제
+	size() : vector 크기를 return
+	resize() : 벡터의 사이즈를 변경. O(N)
+	front() : 맨 처음 원소 return
+	back() : 맨 마지막 원소 return
+	clear() : 벡터 내부 내용 삭제. O(N)
+	insert() : 특정 위치에 값 삽입. O(N)
+	begin() : 벡터 시작 위치(반복자 형식) 리턴
+	end() : 벡터 마지막 위치의 다음 위치(반복자 형식) 리턴
+	*/
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+void refDeque() {
+	/* 8. 덱 사용
 	자료구조 형식 queue < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
@@ -249,7 +435,7 @@ void refQueue() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refPriority_Queue() {
-	/* 5. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
+	/* 9. 우선순위 큐 : 내림차순(기본) 기준으로 값들을 자동 정렬함.
 	자료구조 형식 priority_queue < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 
@@ -294,7 +480,7 @@ void refPriority_Queue() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refMap() {
-	/* 6. 맵 : Key와 Value의 1:1 매칭 자료구조.
+	/* 10. 맵 : Key와 Value의 1:1 매칭 자료구조.
 	자료구조 형식 map < K, T > 변수 이름; 
 	pair 형식으로 들어가서 key는 first, value는 second로 접근가능
 	K와 T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
@@ -302,10 +488,10 @@ void refMap() {
 	균형 이진트리로 구현되기 때문에 기본적으로 정렬을 수행하고, 따라서 자료구조가 느리다.
 
 	자주 쓰는 함수
-	begin() : 위와 동
-	end() : 위와 동
-	empty() : 위와 동
-	size() : 위와 동
+	begin() : O(1)
+	end() : O(1)
+	empty() : O(1)
+	size() : O(1)
 	at() : 함수에 넘긴 값과 같은 값을 가진 키의 Value 참조자를 리턴.(아래 사용 예시 확인) O(logN)
 	insert() : Key랑 Value pair 형식으로 자료구조에 삽입. At most O(logN)
 	erase() : Key를 넘기든, 반복자를 넘기든, 반복자 범위를 넘겨서 해당하는 Key 삭제. O(1) ~ O(N)
@@ -395,7 +581,7 @@ void refMap() {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refUnordered_Map() {
-	/* 7. 정렬 안 된 맵 : Key와 Value의 1:1 매칭 자료구조.
+	/* 11. 정렬 안 된 맵 : Key와 Value의 1:1 매칭 자료구조.
 	자료구조 형식 unordered_map < K, T > 변수 이름; 
 	pair 형식으로 들어가서 key는 first, value는 second로 접근가능
 	K와 T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
@@ -403,10 +589,10 @@ void refUnordered_Map() {
 	at, find 같은 함수는 당연히 더 느림(정렬 안 된 상태이니까)
 
 	자주 쓰는 함수
-	begin() : 위와 동
-	end() : 위와 동
-	empty() : 위와 동
-	size() : 위와 동
+	begin() : O(1)
+	end() : O(1)
+	empty() : O(1)
+	size() : O(1)
 	at() : At most O(N)
 	insert() : At most O(N * (size + 1)). N == 넣을 값의 수, size == map size.
 	erase() : At most O(N)
@@ -427,44 +613,8 @@ void refUnordered_Map() {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-void refTuple() {
-	/* 9. 튜플 : pair를 확장한 자료형 tuple은 2 개 이상의 값을 한 번에 저장 가능.
-	자료구조 형식 tuple < T1, T2, ... > 변수 이름;
-	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
-
-	자주 쓰는 함수
-	get() : 멤버함수 아님. get<i>(변수) 형식으로 쓰며, 변수의 i번째 위치의 참조자를 반환한다.
-	make_tuple() : 멤버함수 아님. 튜플 만드는 함수.
-	*/
-	tuple <string, int, int> Node;
-	Node = make_tuple("first", 3, 6);
-	auto [a, b, c] = Node; //C++17 문법. 구조적 바인딩. 구조체나 자료구조의 값들을 변수에 자동 할당.
-	cout << a << " : " << b << ", " << c << "\n\n";
-	//위의 구조적 바인딩이 지원되지 않으면, 아래와 같이 튜플 사용
-	
-	string d = std::get<0>(Node); //0번째 위치의 참조자 반환(값을 수정할 수 있음).
-	std::get<1>(Node) = 5;
-	int e = get<1>(Node);
-	int f = get<2>(Node);
-	cout << d << " : " << e << ", " << f << "\n\n";
-
-	queue <tuple <int, int, int> > q; //x, y, value 값을 저장해야 하는 경우
-	q.push(make_tuple(3, 4, 5));
-	q.push({ 10, -5, 1 });
-	q.push({ 0, 9, 19 });
-
-	int q_size = q.size();
-	while (q_size--) {
-		auto [x, y, val] = q.front();
-		q.pop();
-		cout << "x : " << x << ", y : " << y << ", 값 : " << val << "\n";
-	}cout << "\n";
-}
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refSet() {
-	/* 11. 셋 :	중복을 허용하지 않는 값들을 저장하는 자료구조.
+	/* 12. 셋 :	중복을 허용하지 않는 값들을 저장하는 자료구조.
 	자료구조 형식 set <	T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
 	균형 이진 트리로 구현됨. 따라서 자동 정렬(오름차순), 노드 기반 자료구조.
