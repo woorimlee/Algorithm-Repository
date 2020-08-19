@@ -1,7 +1,6 @@
 # Created by https://www.gitignore.io/api/c++,windows,visualstudio
 # Edit at https://www.gitignore.io/?templates=c++,windows,visualstudio
 
-kakao_token.json
 
 *checkpoints*
 
@@ -261,6 +260,8 @@ PublishScripts/
 # NuGet v3's project.json files produces more ignorable files
 *.nuget.props
 *.nuget.targets
+
+kakao_token.json
 
 # Microsoft Azure Build Output
 csx/
