@@ -1,6 +1,8 @@
 # Created by https://www.gitignore.io/api/c++,windows,visualstudio
 # Edit at https://www.gitignore.io/?templates=c++,windows,visualstudio
 
+kakao_token.json
+
 *checkpoints*
 
 *.(Trying)*
