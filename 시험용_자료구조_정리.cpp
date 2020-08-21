@@ -322,22 +322,42 @@ bool comp(vector<int> v1, vector<int> v2) {
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 void refPair() {
 	/* 4. 페어 사용
-	자료구조 형식 queue < T > 변수 이름;
-	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	자료구조 형식 pair < T1, T2 > 변수 이름;
+	T1, T2에는 int, char 같은 datatype 혹은 vector 같은 자료구조가 들어갈 수 있다.
+	보통 vector 같은 자료구조와 함께 쓰이며, 2차원 좌표 값을 벡터에 저장한다하면 아래처럼 변수를 만든다.
+	vector <pair <int, int> > vec;
 
 	자주 쓰는 함수
-	대부분의 경우 O(1)
-	push_back() : 벡터에 값을 넣는 함수
-	pop_back() : 벡터 마지막에 있는 값 삭제
-	size() : vector 크기를 return
-	resize() : 벡터의 사이즈를 변경. O(N)
-	front() : 맨 처음 원소 return
-	back() : 맨 마지막 원소 return
-	clear() : 벡터 내부 내용 삭제. O(N)
-	insert() : 특정 위치에 값 삽입. O(N)
-	begin() : 벡터 시작 위치(반복자 형식) 리턴
-	end() : 벡터 마지막 위치의 다음 위치(반복자 형식) 리턴
+	make_pair() : pair 값을 만들어서 리턴해줌.
 	*/
+	
+	//동물원 동물의 이름과 나이를 저장하려고 한다.
+	//p1 pair의 T1으로는 string을, T2로는 int를 사용했다.
+	pair <string, int> p1;
+	p1 = make_pair("Pobi", 11); //make_pair(T1에 넣을 값, T2에 넣을 값) -> pair return
+	
+	//p2의 첫 번째 타입인 string에 값을 넣으려면 .first를, 
+	//두 번째 타입에 값을 넣으려면 .second를 사용한다.
+	pair <string, int> p2;
+	p2.first = "Porori";
+	p2.second = 15;
+
+	//초기화
+	pair <string, int> p3("Porori", 5);
+
+	cout << p1.first << " " << p1.second << "\n";
+	cout << p2.first << " " << p2.second << "\n";
+	cout << p3.first << " " << p3.second << "\n";
+	
+	//pair 대소비교
+	//first에 있는 값 먼저 비교한 후 second에 있는 값을 비교함. 
+	//pair 정렬할 때 계산되는 순서라고 생각하자.
+	if (p2 == p3) cout << "p2와 p3은 동일한 이름과 나이\n";
+	if (p2 != p3) cout << "p2와 p3은 같지 않음\n";
+	if (p2 > p3) cout << "p2가 p3보다 큼(초과)\n";
+	if (p2 < p3) cout << "p2가 p3보다 작음(미만)\n";
+	if (p2 >= p3) cout << "p2가 p3보다 큼(이상)\n\n";
+	if (p2 <= p3) cout << "p2가 p3보다 작음(이하)\n";
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -382,10 +402,24 @@ void refStack() {
 	/* 6. 스택 사용
 	자료구조 형식 stack < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	LIFO 자료구조
 
 	자주 쓰는 함수
-
+	O(1)
+	push() : 스택 맨 위에(끝에) 값을 삽입 
+	pop() : 스택 맨 위에 있는 값을 삭제
+	size() : 스택 크기 return
+	top() : 맨 위에 있는 값을 return
+	empty() : 비어있으면 true를, 아니면 false를 return
 	*/
+
+	stack <int> st;
+	st.push(1);
+	st.push(9);
+	st.push(2);
+	cout << "스택 맨 위에 있는 값 : " << st.top() << "\n";
+	st.pop();
+	cout << "스택 맨 위에 있는 값 : " << st.top() << "\n\n";
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -394,20 +428,26 @@ void refQueue() {
 	/* 7. 큐 사용
 	자료구조 형식 queue < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
+	FIFO 자료구조
 
 	자주 쓰는 함수
-	대부분의 경우 O(1)
-	push_back() : 벡터에 값을 넣는 함수
-	pop_back() : 벡터 마지막에 있는 값 삭제
-	size() : vector 크기를 return
-	resize() : 벡터의 사이즈를 변경. O(N)
-	front() : 맨 처음 원소 return
-	back() : 맨 마지막 원소 return
-	clear() : 벡터 내부 내용 삭제. O(N)
-	insert() : 특정 위치에 값 삽입. O(N)
-	begin() : 벡터 시작 위치(반복자 형식) 리턴
-	end() : 벡터 마지막 위치의 다음 위치(반복자 형식) 리턴
+	O(1)
+	push() : 큐 맨 끝에 값을 삽입
+	pop() : 맨 앞에 있는 값을 삭제
+	size() : 큐 크기 return
+	front() : 큐의 맨 앞에 있는 값을 return
+	back() : 큐의 맨 끝에 있는 값을 return
+	empty() : 비어있으면 true, 아니면 false
 	*/
+
+	queue <int> q;
+	q.push(1);
+	q.push(2);
+	q.push(3);
+	cout << "q의 맨 앞과 맨 끝 : " << q.front() << " " << q.back() << "\n";
+	q.pop();
+	q.push(1);
+	cout << "q의 맨 앞과 맨 끝 : " << q.front() << " " << q.back() << "\n\n";
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -416,20 +456,43 @@ void refDeque() {
 	/* 8. 덱 사용
 	자료구조 형식 queue < T > 변수 이름;
 	T에는 int, char 같은 datatype 혹은 pair 같은 자료구조가 들어갈 수 있다.
-
+	Double-ended queue의 줄임말. Deque
+	front랑 end 양쪽에서 값을 삽입하고 삭제할 수 있는 자료구조.
+	인덱스 기반 접근 가능
+	
 	자주 쓰는 함수
 	대부분의 경우 O(1)
-	push_back() : 벡터에 값을 넣는 함수
-	pop_back() : 벡터 마지막에 있는 값 삭제
-	size() : vector 크기를 return
-	resize() : 벡터의 사이즈를 변경. O(N)
+	push_back() : 덱의 맨 뒤에 값을 삽입
+	pop_back() : 덱의 맨 뒤에 있는 값을 삭제
+	push_front() : 덱의 맨 앞에 값을 삽입
+	pop_front() : 덱의 맨 앞에 있는 값을 삭제
+	size() : 덱 크기를 return
+	resize() : 덱의 사이즈를 변경. O(N). N은 inserted/deleted 될 값의 갯수
+	empty() : 덱이 비어있음면 true, 아니면 false를 return
 	front() : 맨 처음 원소 return
 	back() : 맨 마지막 원소 return
-	clear() : 벡터 내부 내용 삭제. O(N)
+	clear() : 덱 내부 내용 삭제. O(N) N은 inserted 될 값의 갯수
 	insert() : 특정 위치에 값 삽입. O(N)
-	begin() : 벡터 시작 위치(반복자 형식) 리턴
-	end() : 벡터 마지막 위치의 다음 위치(반복자 형식) 리턴
+	begin() : 덱 시작 위치(반복자 형식) 리턴
+	end() : 덱 마지막 위치의 다음 위치(반복자 형식) 리턴
 	*/
+
+	deque <int> deq1;
+	deque <int> deq2(5, 0); //5개의 공간에 0을 채움
+	deq1.push_back(1);
+	deq1.push_back(5);
+	deq1.push_front(7);
+	deq1.push_front(3);
+	
+	cout << "deq1에 들어있는 값 : ";
+	for (deque <int>::iterator it = deq1.begin(); it != deq1.end(); it++ ) cout << *it << " ";
+	cout << "\n";
+
+	cout << "deq2에 들어있는 값 : ";
+	for (int i = 0; i < deq2.size(); i++) {
+		cout << deq2[i] << " ";
+	}
+	cout << "\n\n";
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
