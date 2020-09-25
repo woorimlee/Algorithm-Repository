@@ -31,7 +31,7 @@ bool match_str(int w, int f) {
 	if (wcp[w] != '*')
 		return 0; //문자가 다른 경우
 	else {
-		ret = match_str(w + 1, f) || match_str(w , f + 1);
+		ret = match_str(w + 1, f) || match_str(w, f + 1);
 	}
 	return ret;
 }
