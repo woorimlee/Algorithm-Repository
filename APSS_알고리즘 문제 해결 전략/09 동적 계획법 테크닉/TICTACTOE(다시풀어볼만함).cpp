@@ -56,7 +56,7 @@ int nb_to_int(const string& nb) {
 		for (int j = 0; j < 3; j++) {
 			n = n * 3;
 			idx = i * 3 + j;
-			if (nb[idx] == 'o') 
+			if (nb[idx] == 'o')
 				n++;
 			else if (nb[idx] == 'x')
 				n += 2;
@@ -68,6 +68,7 @@ int nb_to_int(const string& nb) {
 //now_b = now_board. 현재 보드의 상태
 //turn = 누구 차례?
 char game_result(string& now_b, char turn) { //이 상태에서 게임의 결과를 return.
+	//cout << now_b << " " << turn << "\n";
 	//base case
 	if (isFinished(now_b, 'o' + 'x' - turn)) //true : 이전 turn이었던 애가 이김
 		return -1;
@@ -81,6 +82,7 @@ char game_result(string& now_b, char turn) { //이 상태에서 게임의 결과를 return.
 	for (int i = 0; i < 3; i++) { //게임 경우의 수 검색
 		for (int j = 0; j < 3; j++) {
 			int idx = i * 3 + j;
+			//cout << idx << " / " << now_b[idx] << "\n";
 			if (now_b[idx] == '.') {
 				now_b[idx] = turn;
 				ret = min(ret, game_result(now_b, 'o' + 'x' - turn)); //-1이 리턴되면 turn인애가 이길 수 있다는 뜻.
@@ -91,13 +93,14 @@ char game_result(string& now_b, char turn) { //이 상태에서 게임의 결과를 return.
 	}
 
 	if (ret == 0 || ret == 2)
-		return ret = 0; // 이걸 빼먹음
+		return ret = 0;
 	else
-		return ret = -ret; // 이걸 빼먹음
+		return ret = -ret;
 }
 
 int main() {
 	cin >> C;
+	fill(&cache[0], &cache[19683], -2);
 	while (C--) {
 		string board = "";
 		string s;
@@ -107,16 +110,15 @@ int main() {
 			for (int j = 0; j < s.size(); j++) //점 갯수 파악
 				if (s[j] == '.')
 					cnt_dot++;
-			
+
 			board += s; //게임 판 입력받기
 		}
-		fill(&cache[0], &cache[19683], -2);
-		
+
 		/*board = "...xx.oo."
 		board를 9자리의 3진수로 보자 3^9 = 19683
 		cache[틱택토상태] ==	1	: 자기가 이김
-								0	: 비김 
-								-1	: 상대가 이김 
+								0	: 비김
+								-1	: 상대가 이김
 		*/
 
 		char first_turn;
@@ -124,7 +126,7 @@ int main() {
 			first_turn = 'x';
 		else
 			first_turn = 'o';
-		
+
 		char res = game_result(board, first_turn);
 		if (res == 1)
 			cout << first_turn << "\n";
