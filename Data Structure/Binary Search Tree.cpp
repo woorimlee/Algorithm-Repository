@@ -9,8 +9,56 @@ struct NODE{
 };
 typedef struct NODE node;
 
+node* insert_BST(node* parent, int key); //key 값을 가진 노드 삽입하기
+node* delete_BST(node* n, int key); //key 값을 가진 노드 지우기
+node* find_min_node(node* n); //delete_BST에서 사용할 함수
+void find_ceil_floor(node*& root); //ceil_BST, floor_BST, ceil_floor_IA 사용하는 함수
+int ceil_BST(node* n, int key); //ceil(올림) 찾기
+int floor_BST(node* n, int key); //floor(내림) 찾기
+void ceil_floor_IA(node* n, int key, int& ceil, int& floor); //ceil, floor 찾기
+void inorder_traversal(node* n); // BST 출력용 중위 순회
+
+int main() {
+	node * root = NULL;
+	root = insert_BST(root, 10);
+	insert_BST(root, 5);
+	insert_BST(root, 7);
+	insert_BST(root, 16);
+	insert_BST(root, 12);
+	insert_BST(root, 3);
+	insert_BST(root, 9);
+	insert_BST(root, 13);
+	insert_BST(root, 14);
+	insert_BST(root, 18);
+
+	cout << "초기 BST : ";
+	inorder_traversal(root);
+	cout << "\n";
+	/*BST
+			 10
+	   5                16
+	3    7      12         18
+		   9       13
+		              14
+	*/
+
+	delete_BST(root, 14);
+	cout << "14 지움 : ";
+	inorder_traversal(root);
+	cout << "\n";
+	/*BST
+	         10
+	   5             16
+	3    7      12      18
+	       9       13
+	*/
+
+	find_ceil_floor(root);
+	return 0;
+}
+
 node* insert_BST(node* parent, int key) {
-	if (parent == NULL) 
+	if (parent == NULL)
 		return new node(key, NULL, NULL);
 
 	if (parent->key > key)
@@ -29,14 +77,13 @@ void inorder_traversal(node* n) {
 	inorder_traversal(n->rgt);
 }
 
-
 node* find_min_node(node* n) {//delete_BST에 쓰일 함수
 	if (n->lft == NULL) {
 		return n;
 	}
 	return find_min_node(n->lft);
 }
-//delete
+
 node* delete_BST(node* n, int key) {
 	if (n == NULL)
 		return NULL;
@@ -66,28 +113,58 @@ node* delete_BST(node* n, int key) {
 	return n;
 }
 
-//floor 내림
-//ceil 올림
+int ceil_BST(node* n, int key) {
+	if (n == NULL) //못찾음
+		return -1;
+	if (n->key == key) //일치하는 것 찾음
+		return n->key;
+	else if (n->key < key) //오른쪽에 있음
+		return ceil_BST(n->rgt, key);
 
-int main() {
+	int temp = ceil_BST(n->lft, key);//왼쪽에 있거나 본인이 ceil 값이거나
+	return (temp >= key) ? temp : n->key;
+}
 
-	node * root = NULL;
-	root = insert_BST(root, 10);
-	insert_BST(root, 5);
-	insert_BST(root, 7);
-	insert_BST(root, 16);
-	insert_BST(root, 12);
-	insert_BST(root, 3);
-	insert_BST(root, 9);
-	insert_BST(root, 13);
-	insert_BST(root, 14);
-	insert_BST(root, 18);
+int floor_BST(node* n, int key) {
+	if (n == NULL)
+		return -1;
+	if (n->key == key)
+		return n->key;
+	else if (n->key > key)
+		return floor_BST(n->lft, key);
 
-	inorder_traversal(root);
-	cout << "\n";
+	int temp = floor_BST(n->rgt, key);
+	return (temp <= key && temp != -1) ? temp : n->key;
+}
 
-	delete_BST(root, 9);
-	inorder_traversal(root);
-	cout << "\n";
-	return 0;
+void ceil_floor_IA(node* n, int key, int& ceil, int& floor) { //IA : Iterative Approach
+	while (n) {
+		if (n->key == key) {
+			ceil = key;
+			floor = key;
+			return;
+		}
+		if (n->key > key) {
+			ceil = n->key;
+			n = n->lft;
+		}
+		else if (n->key < key) {
+			floor = n->key;
+			n = n->rgt;
+		}
+	}
+}
+
+void find_ceil_floor(node*& root) {
+	//1. recursive approach
+	for (int i = 2; i <= 19; i++) {
+		cout << "key : " << i << ", floor : " << floor_BST(root, i) << ", ceil : " << ceil_BST(root, i) << "\n";
+	}
+	//2. iterative approach
+	for (int i = 2; i <= 19; i++) {
+		int ceil = -1;
+		int floor = -1;
+		ceil_floor_IA(root, i, ceil, floor);
+		cout << "\nkey : " << i << ", floor : " << floor << ", ceil : " << ceil;
+	}
 }
