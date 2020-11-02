@@ -29,7 +29,43 @@ void inorder_traversal(node* n) {
 	inorder_traversal(n->rgt);
 }
 
+
+node* find_min_node(node* n) {//delete_BST에 쓰일 함수
+	if (n->lft == NULL) {
+		return n;
+	}
+	return find_min_node(n->lft);
+}
 //delete
+node* delete_BST(node* n, int key) {
+	if (n == NULL)
+		return NULL;
+
+	if (n->key > key)
+		n->lft = delete_BST(n->lft, key);
+	else if (n->key < key)
+		n->rgt = delete_BST(n->rgt, key);
+	else if (n->key == key) {
+		//자식 노드가 없거나 하나인 경우
+		if (n->lft == NULL) {
+			node* temp = n->rgt;
+			free(n);
+			return temp;
+		}
+		else if (n->rgt == NULL) {
+			node* temp = n->lft;
+			free(n);
+			return temp;
+		}
+
+		//양 쪽에 자식이 있는 경우, 오른쪽 sub tree 중 가장 작은 값 찾음
+		node* temp = find_min_node(n->rgt);
+		n->key = temp->key;
+		n->rgt = delete_BST(n->rgt, temp->key);
+	}
+	return n;
+}
+
 //floor 내림
 //ceil 올림
 
@@ -43,9 +79,15 @@ int main() {
 	insert_BST(root, 12);
 	insert_BST(root, 3);
 	insert_BST(root, 9);
+	insert_BST(root, 13);
+	insert_BST(root, 14);
+	insert_BST(root, 18);
 
 	inorder_traversal(root);
 	cout << "\n";
 
+	delete_BST(root, 9);
+	inorder_traversal(root);
+	cout << "\n";
 	return 0;
 }
