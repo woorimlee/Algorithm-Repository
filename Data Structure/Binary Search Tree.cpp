@@ -1,4 +1,4 @@
-#include "BST.h"
+ï»¿#include "BST.h"
 
 int main() {
 	node * root = NULL;
@@ -13,7 +13,7 @@ int main() {
 	insert_BST(root, 14);
 	insert_BST(root, 18);
 
-	cout << "ÃÊ±â BST : ";
+	cout << "ì´ˆê¸° BST : ";
 	inorder_traversal(root);
 	cout << "\n";
 	
@@ -26,7 +26,7 @@ int main() {
 	*/
 
 	delete_BST(root, 14);
-	cout << "14 Áö¿ò : ";
+	cout << "14 ì§€ì›€ : ";
 	inorder_traversal(root);
 	cout << "\n";
 	/*BST
