@@ -28,3 +28,5 @@
 * **cpp 내장 자료구조 사용법 정리** : [vector, stack, queue, deque, priority_queue, map, unordered_map, pair, tuple, string, set](https://github.com/woorimlee/Algorithm-Repository/blob/master/%EC%8B%9C%ED%97%98%EC%9A%A9_%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0_%EC%A0%95%EB%A6%AC.cpp)
 * **구현** : 
   * [이진 탐색 트리(BST, Binary Search Tree)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Data%20Structure/Binary%20Search%20Tree.cpp)
+  * [이진 탐색 트리를 최소 힙으로(BST to Min Heap)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Data%20Structure/BST%20to%20Min%20Heap.cpp)
+  * [최소 힙(Min Heap)](https://github.com/woorimlee/Algorithm-Repository/blob/master/Data%20Structure/Min%20Heap.cpp)
