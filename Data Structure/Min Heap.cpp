@@ -25,25 +25,44 @@ public :
 	int right(int i) { return 2 * i + 2; }
 
 	void insert_key(int key); // 새 값을 삽입. O(log n)
-	int get_min() { return heap[0]; } // 최솟값 return. O(1)
-	void pop_min(); // 최솟값 제거. O(log n)
+	int get_min(); // 최솟값 return. O(1)
+	void pop_min(); // 최솟값 제거. O(log n) -> heap을 유지하기 위해 root를 제거한 후 heapify
 	void min_heapify(int i); //i 번째 노드의 subtree를 heapify
-	void decrease_key(int i, int new_key); // 특정 노드의 key 값을 수정한다. O(log n)
-	void delete_node(int i); // i 번째 index에 있는 노드 삭제
 	void print_heap();
 };
 
 int main() {
 	MinHeap heap(10);
 	heap.insert_key(10);
-	heap.insert_key(2);
+	heap.insert_key(5);
 	heap.insert_key(6);
 	heap.insert_key(8);
 	heap.insert_key(1);
-	heap.insert_key(5);
+	heap.insert_key(2);
 	heap.insert_key(16);
-	heap.insert_key(4);
+	heap.insert_key(7);
+
+	//출력
 	heap.print_heap();
+	heap.get_min();
+	
+	//pop
+	heap.pop_min();
+	heap.pop_min();
+	
+	//출력
+	heap.print_heap();
+	heap.get_min();
+
+	//힙 비우기
+	heap.pop_min();
+	heap.pop_min();
+	heap.pop_min();
+	heap.pop_min();
+	heap.pop_min();
+	heap.pop_min();
+	heap.pop_min(); // 에러 출력
+
 	return 0;
 }
 
@@ -63,6 +82,7 @@ void MinHeap::insert_key(int k) {
 	int i = heap_size - 1;
 	heap[i] = k;
 
+	//바꿀 노드가 부모 노드보다 key 값이 작은지만 검사해요
 	while (i != 0 && heap[MinHeap::parent(i)] > heap[i]) {
 		swap(heap[MinHeap::parent(i)], heap[i]);
 		i = parent(i);
@@ -74,4 +94,40 @@ void MinHeap::print_heap() {
 	for (int i = 0; i < heap_size; i++)
 		cout << heap[i] << " ";
 	cout << "\n";
+}
+
+int MinHeap::get_min() {
+	cout << "\n최솟값 : " << heap[0] << "\n";
+	return heap[0]; 
+}
+
+void MinHeap::pop_min() {
+	if (heap_size <= 0) {
+		cout << "\n힙이 비어있습니다.\n";
+		return;
+	}
+	else if (heap_size == 1) {
+		heap_size--;
+		return;
+	}
+
+	//최소 힙에 두 개 이상의 노드가 들어있을 때 실행 가능
+	heap[0] = heap[heap_size - 1];
+	heap_size--;
+	min_heapify(0);
+}
+
+void MinHeap::min_heapify(int i) {
+	int lft = MinHeap::left(i);
+	int rgt = MinHeap::right(i);
+	int smallest = i;
+
+	if (lft < heap_size && heap[smallest] > heap[lft])
+		smallest = lft;
+	if (rgt < heap_size && heap[smallest] > heap[rgt])
+		smallest = rgt;
+	if (smallest != i) {
+		swap(heap[smallest], heap[i]);
+		MinHeap::min_heapify(smallest);
+	}
 }
