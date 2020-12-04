@@ -49,9 +49,9 @@ public:
 	typedef _myiterator<T> iterator;
 	int max_size = 4;
 	int cur_size = 0;
-	iterator first;
-	iterator last;
+
 	myvector() { head = new NODE<T>[max_size]; }
+
 	bool append(T val) {
 		//push_back();
 		//reserve가 실행되면 false, 아니면 true를 return
@@ -59,7 +59,7 @@ public:
 		//저장할 곳이 없다면 늘려
 		bool flag = true;
 		if (max_size == cur_size) {
-			//myvector<T>::reserve();
+			reserve(max_size * 2);
 			flag = false;
 		}
 		//맨 뒤에 값을 추가해
@@ -70,11 +70,39 @@ public:
 		return flag;
 	}
 		
-	void size() { return size; }
-	void reserve(); //배열 크기 새로 할당, 옮기기, 기존거 삭제
-	void umove(); //옮기기
-	void change_array(); //orphan_all 실행, 속성 값 바꾸기
-	void orphan_all(); //모든 iterator가 nullptr을 가리킴
+	int size() { return cur_size; }
+
+	void reserve(int new_capacity) {
+	//배열 크기 새로 할당, 옮기기, 기존거 삭제
+		if (new_capacity > max_size) {//원래는 end - begin 사이즈
+			//원래는 if(new_capacity > max_size()) _Xlength(); -> 최대의 사이즈를 못 넘어가게 설정해둠
+
+			max_size = new_capacity;
+			NODE <T>* new_vec = new NODE<T>[max_size];
+			umove(new_vec);
+			change_array(new_vec);
+		}
+	}
+
+	void umove(NODE <T>*& new_vec) { //옮기기
+		for (int i = 0; i < cur_size; i++) {
+			new_vec[i].data = head[i].data;
+		}
+	}
+	
+	void change_array(NODE <T>*& new_vec) { //orphan_all 실행, 속성 값 바꾸기
+		orphan_all(new_vec);
+		delete[] head;
+		head = new_vec;
+	}
+
+	void orphan_all(NODE <T>*& new_vec) { //모든 iterator가 nullptr을 가리킴
+		for (int i = 0; i < cur_size - 1; i++) {
+			head[i].next = nullptr;
+			new_vec[i].next = &new_vec[i + 1];
+		}
+	}
+
 	iterator begin() { return iterator(head); }
 	iterator end() { return iterator(nullptr); }
 };
@@ -107,14 +135,26 @@ int main() {
 	결국 그냥 n 사이즈만큼 reallocate가 끝이네 (현재 크기가 n보다 작으면)
 	*/
 
+	/*myvector<int> myvec;
+	myvec.append(1);
+	myvec.append(3);
+	myvec.append(5);
+	myvec.append(7);
+	myvec.append(9);
+	myvec.append(11);
+	이런식으로 하고 reserve() 호출안 할 때 에러가 안뜨던데, 그 이유가 
+	https://stackoverflow.com/questions/44093083/c-new-operator-creates-array-of-length-length-1
+	여기에 있음. Undefined behaviour means that the C++ standard imposes no requirements on what happens.
+	*/
 	myvector<int> myvec;
 	myvec.append(1);
 	myvec.append(3);
 	myvec.append(5);
 	myvec.append(7);
+	myvec.append(9);
 	myvector<int>::iterator it;
 	for (it = myvec.begin(); it != myvec.end(); ++it)
 		cout << *it << "\n";
-
+	cout << myvec.max_size << " " << myvec.cur_size << "\n";
 	return 0;
 }
