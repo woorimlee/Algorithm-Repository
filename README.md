@@ -12,7 +12,8 @@
 3. **구름LEVEL** : https://level.goorm.io/
 4. **CodeUp** : 코드업 (은 파이썬 코드만 올림)
 
-### 기술 시험 면접 대비 : [링크](https://github.com/woorimlee/Algorithm-Repository/blob/master/%EC%8B%9C%ED%97%98/%EA%B8%B0%EC%88%A0%20%EB%A9%B4%EC%A0%91%20%EB%8C%80%EB%B9%84.md)
+### 기술 시험 면접 대비 : 
+* [링크](https://github.com/woorimlee/Algorithm-Repository/blob/master/%EC%8B%9C%ED%97%98%20%EB%B0%8F%20%EA%B8%B0%ED%83%80%20%EC%9E%90%EB%A3%8C%20%EC%A0%95%EB%A6%AC/%EA%B8%B0%EC%88%A0%20%EB%A9%B4%EC%A0%91%20%EB%8C%80%EB%B9%84.md)
 
 ### 구현해 놓은 알고리즘 : 
 * **선형 시간 선택(Linear time selection)** : 
