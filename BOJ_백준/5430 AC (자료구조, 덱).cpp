@@ -15,17 +15,6 @@ deque <int> dq;
 //D 연산 : 
 //pop_front & empty() 체크
 
-bool D(deque <int>& dq) {
-	if (dq.size() == 0) {
-		printf("error\n");
-		return false; //에러면 false를 리턴. 더이상 함수 사용 못하게
-	}
-	else {
-		dq.pop_front();
-		return true;
-	}
-}
-
 bool AC() {
 	r_flag = false; //true면 R 한 거, false면 R 안한거 or 짝수번 한 거
 	int j = 1;
@@ -43,7 +32,7 @@ bool AC() {
 		if ('0' <= it && it <= '9') {
 			snum += it;
 		}
-		else if(snum != "") {
+		else if (snum != "") {
 			dq.push_back(stoi(snum));
 			snum = "";
 		}
@@ -59,7 +48,7 @@ bool AC() {
 				cout << "error\n";
 				return false; //에러면 false를 리턴. 더이상 함수 사용 못하게
 			}
-			else if(r_flag) { // 거꾸로 배열이 구성되어 있으면
+			else if (r_flag) { // 거꾸로 배열이 구성되어 있으면
 				dq.pop_back();
 			}
 			else {
@@ -74,7 +63,7 @@ int main()
 {
 	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	
+
 	cin >> T;
 	while (T--) {
 		//AC를 실행하는데, error만 아니면 [배열값]출력
