@@ -22,8 +22,6 @@ int main() {
 	cin >> N;
 	string s;
 
-	//compare 함수 만들어서 set의 정렬 조건 수정함.
-	bool (*fn_pt)(string, string) = compare;
 	set <string, bool(*)(string, string)> arr(compare);
 	for (int i = 0; i < N; i++) {
 		cin >> s;
