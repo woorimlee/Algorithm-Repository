@@ -1,30 +1,15 @@
-#include <iostream>
-#include <sstream>
-#include <vector>
-#include <string>
-#include <cmath>
-#include <algorithm>
-
-using namespace std;
-
-
-void permutation(string str, string prefix) {
-    if (str.length() == 0) {
-        cout << prefix << "\n";
-    }
-    else {
-        for (int i = 0; i < str.length(); i++) {
-            string rem = str.substr(0, i) + str.substr(i + 1);
-            permutation(rem, prefix + str[i]);
-        }
-    }
-}
-void permutation(string str) {
-    permutation(str, "");
-}
+#include <stdio.h>
+#include <sys/stat.h>
 
 int main() {
-    permutation("abcd");
-
+	int ret = 0;
+	struct stat buf;
+	ret = stat("link.txt", &buf);
+	if (ret < 0) {
+		printf("ERROR\n");
+		return 0;
+	}
+	
+	printf("deviceID[%ld], inode_num[%ld], hardlink_cnt[%ld], filesize[%ld], blocksize[%ld], block_cnt[%ld]\n", buf.st_dev, buf.st_ino, buf.st_nlink, buf.st_size, buf.st_blksize, buf.st_blocks);
 	return 0;
 }
