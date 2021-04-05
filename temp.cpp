@@ -1,97 +1,40 @@
 #include <iostream>
+#include <regex>
 #include <string>
-#include <deque>
 
 using namespace std;
 
-bool r_flag = false;
-int T, n;
-string p, arr;
-deque <int> dq;
+int main() {
+	/*
+	
+	* : 바로 앞의 문자를 0 번 이상 반복
+	+ : 앞의 문자가 한 번 이상 반복
+		ex) a+ == aa*
+	? : 앞에 나오는 정규 표현식이 없거나 한 개인 것과 일치
+	^ : 행의 시작
+	$ : 행의 끝
+		ex) ^$ == 빈 줄과 일치
+	\ : 특수 문자를 일반 문자로 치환
+		ex) \\ == \ 문자 그 자체를 찾음
+	[, ] : 대괄호는 여러 문자 중 하나와 일치하는 것을 찾음
+		   대괄호 안에서 - : 범위를 나타냄
+		   대괄호 안에서 ^ : 바로 뒤에 나오는 표현의 반대를 의미함
+		   ex) [^0-9] : 숫자를 제외한 모든 문자를 의미
+	{, } : 정규 표현식의 빈도수
+		   중괄호 안에서 n, : n번 이상 반복
+		   중괄호 안에서 n, m : n번 이상 m번 이하 반복
+	(, ) : 정규 표현식 그룹을 묶어줌
+		   ex) (abc){1, 3} == abc, abcabc, abcabcabc
+	| : OR 연산
 
-//R 연산 : 
-//출력할 때 배열을 앞에서부터 출력하냐, 뒤에서부터 출력하냐만 결정해주면 됨.
+	1. regex_match : 정규식이 문자열 전체와 일치하는지 검사
 
-//D 연산 : 
-//pop_front & empty() 체크
+	2. regex_search : 문자열 일부분 매칭 검사
 
+	3. regex_replace : 일치하는 일부분을 다른 문자열로 치환
 
-bool AC() {
-	r_flag = false; //true면 R 한 거, false면 R 안한거 or 짝수번 한 거
-	int j = 1;
-	string snum = "";
-	dq.clear();
-	cin >> p; //함수
-	cin >> n;
-	cin >> arr; //배열
+	4. sregex_iterator : 이터레이터 형식으로 매칭된 문자 모두 검사
+	*/
 
-	//입력받은 배열에서 숫자 쪼개 실제 배열에(덱) 집어넣기
-	for (auto it : arr) {
-		//숫자면 문자열에 더해두다가
-		//숫자 아닌순간 && 문자열에 어떤 값이 있다면
-		//배열에 추가하고 문자열 초기화
-		if ('0' <= it && it <= '9') {
-			snum += it;
-		}
-		else if (snum != "") {
-			dq.push_back(stoi(snum));
-			snum = "";
-		}
-	}
-
-	//함수 하나씩 확인하면서 덱에 적용하기
-	for (auto it : p) {
-		if (it == 'R') {
-			r_flag = !r_flag;
-		}
-		else { //함수가 D면
-			if (dq.size() == 0) {
-				cout << "error\n";
-				return false; //에러면 false를 리턴. 더이상 함수 사용 못하게
-			}
-			else if (r_flag) { // 거꾸로 배열이 구성되어 있으면
-				dq.pop_back();
-			}
-			else {
-				dq.pop_front();
-			}
-		}
-	}
-	return true;
-}
-
-int main()
-{
-	ios_base::sync_with_stdio(false);
-	cin.tie(NULL);
-
-	cin >> T;
-	while (T--) {
-		//AC를 실행하는데, error만 아니면 [배열값]출력
-		//AC는 error가 발생한 경우 false를 return.
-		if (AC()) {
-			if (dq.empty()) {
-				cout << "[]\n";
-			}
-			else {
-				int size = dq.size();
-				cout << "[";
-				if (r_flag) {//R이 홀수 번 실행되면 거꾸로 출력
-					for (int i = 0; i < size - 1; i++) {
-						cout << dq.back() << ",";
-						dq.pop_back();
-					}
-					cout << dq[0];
-				}
-				else {
-					for (int i = 0; i < size - 1; i++) {
-						cout << dq[i] << ",";
-					}
-					cout << dq.back();
-				}
-				cout << "]\n";
-			}
-		}
-
-	}
+	return 0;
 }
