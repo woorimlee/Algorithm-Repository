@@ -13,7 +13,7 @@ int main() {
 
     for (auto& c : paragraph) c = isalpha(c) ? tolower(c) : ' '; // to_lower paragraph
 
-    regex rgx("\\w+");
+    regex rgx("\\w+", regex::optimize);
     smatch sm;
     unordered_map <string, int> cnt_words;
 
