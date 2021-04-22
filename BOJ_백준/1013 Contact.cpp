@@ -11,9 +11,9 @@ int main() {
 		cin >> signal;
 		regex rgx("\\b((100+1+)|01)+\\b");
 		if (regex_match(signal, rgx))
-			cout << "YES";
+			cout << "YES\n";
 		else
-			cout << "NO";
+			cout << "NO\n";
 	}
 	return 0;
 }
