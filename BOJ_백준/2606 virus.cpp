@@ -26,14 +26,14 @@ void dfs(int cur) {
 
 int main(void) {
 	//cin >> N >> S;
-	scanf("%d %d", &N, &S);
+	scanf_s("%d %d", &N, &S);
 
 	com_graph.resize(N+1);
 
 	int a, b;
 	while (S--) {
 		//cin >> a >> b;
-		scanf("%d %d", &a, &b);
+		scanf_s("%d %d", &a, &b);
 		com_graph[a].push_back(b);
 		com_graph[b].push_back(a);
 	}
