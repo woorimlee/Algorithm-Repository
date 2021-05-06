@@ -19,7 +19,13 @@ class MinHeap {
 	int heap_size = 0; //현재 heap의 size
 
 public :
-	MinHeap(int capa);
+
+	MinHeap(int capa) {
+		heap = new int[capa];
+		capacity = capa;
+		heap_size = 0;
+	}
+
 	int parent(int i) { return (i - 1) / 2; }
 	int left(int i) { return 2 * i + 1; }
 	int right(int i) { return 2 * i + 2; }
@@ -64,12 +70,6 @@ int main() {
 	heap.pop_min(); // 에러 출력
 
 	return 0;
-}
-
-MinHeap::MinHeap(int capa) {
-	heap = new int[capa];
-	capacity = capa;
-	heap_size = 0;
 }
 
 void MinHeap::insert_key(int k) {
