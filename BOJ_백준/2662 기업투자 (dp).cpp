@@ -66,30 +66,4 @@ int main() {
     fill(&cache[0][0], &cache[MAX - 1][20 + 1], -1);
     cout << invest(N, 1) << "\n";
     invest_record();
-
-    for (int i = 0; i <= N; i++) {
-        for (int j = 0; j <= M; j++) {
-            cout << cache[i][j] << " ";
-        }
-        cout << "\n";
-    }
-    cout << "\n";
-
-    for (int i = 0; i <= N; i++) {
-        for (int j = 0; j <= M; j++) {
-            cout << invested[i][j] << " ";
-        }
-        cout << "\n";
-    }
-    cout << "\n";
-
-    for (int i = 0; i <= N; i++) {
-        for (int j = 0; j <= M; j++) {
-            cout << company[i][j] << " ";
-        }
-        cout << "\n";
-    }
-    cout << "\n";
-
-    return 0;
 }
