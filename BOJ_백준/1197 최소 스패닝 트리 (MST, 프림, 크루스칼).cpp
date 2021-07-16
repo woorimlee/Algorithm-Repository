@@ -60,7 +60,7 @@ long long prim() {
 		if (!visited[cur.second]) {
 			visited[cur.second] = 1;
 			res += cur.first;
-			for (int i = 0; i < edge2[cur.second].size(); i++) 
+			for (int i = 0; i < edge2[cur.second].size(); i++)
 				if (!visited[edge2[cur.second][i].second])
 					pq.push(edge2[cur.second][i]);
 		}
@@ -70,24 +70,21 @@ long long prim() {
 
 
 int main(void) {
-	ios_base::sync_with_stdio(false); 
+	ios_base::sync_with_stdio(false);
 	cin.tie(NULL);
-	
+
 	/* 크루스칼
 	cin >> V >> E;
 	for (int i = 1; i <= V; i++) {
 		parent[i] = i;
 		rank_[i] = 1;
 	}
-
 	int A, B, C;
 	for (int i = 0; i < E; i++) {
 		cin >> A >> B >> C;
 		graph.push_back(edge(A, B, C));
 	}
-
 	sort(graph.begin(), graph.end(), comp);
-
 	for (auto& e : graph) {
 		if (find(e.v) != find(e.u)) {
 			merge(e.u, e.v);
@@ -95,7 +92,7 @@ int main(void) {
 		}
 	}*/
 
-	/* 프림 
+	/* 프림
 	cin >> V >> E;
 	int A, B, C;
 	for (int i = 0; i < E; i++) {
