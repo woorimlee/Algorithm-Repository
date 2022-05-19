@@ -37,14 +37,14 @@ void refSet();
 int main() {
 	//refStruct();
 	//refString();
-	refVector();
+	//refVector();
 	//refPair();
 	//refTuple();
 	//refStack();
 	//refQueue();
 	//refDeque();
 	//refPriority_Queue();
-	//refMap();
+	refMap();
 	//refUnordered_Map();
 	//refSet();
 }
@@ -210,7 +210,7 @@ void refVector() {
 	vec0.clear();
 	cout << "5. ";
 	if (vec0.empty()) {
-		cout << "vec0 비어있음\n\n";
+		cout << "vec0 비어있음, 사이즈 : " << size(vec0) << "\n\n";
 	}
 
 	vector <int> vec1 = { 1, 2, 3, 4 }; //벡터 초기화하는 일반적인 방법. 일반 배열에 넣는것과 똑같음.
@@ -332,7 +332,7 @@ void refPair() {
 	make_pair() : pair 값을 만들어서 리턴해줌.
 	*/
 	
-	//동물원 동물의 이름과 나이를 저장하려고 한다.
+	//동물의 이름과 나이를 저장하려고 한다.
 	//p1 pair의 T1으로는 string을, T2로는 int를 사용했다.
 	pair <string, int> p1;
 	p1 = make_pair("Pobi", 11); //make_pair(T1에 넣을 값, T2에 넣을 값) -> pair return
@@ -344,11 +344,14 @@ void refPair() {
 	p2.second = 15;
 
 	//초기화
-	pair <string, int> p3("Porori", 5);
+	pair <string, int> p3("Yeppi", 5);
+
+	pair <string, int> p4 = { "HoHo", 10 };
 
 	cout << p1.first << " " << p1.second << "\n";
 	cout << p2.first << " " << p2.second << "\n";
 	cout << p3.first << " " << p3.second << "\n";
+	cout << p4.first << " " << p4.second << "\n";
 	
 	//pair 대소비교
 	//first에 있는 값 먼저 비교한 후 second에 있는 값을 비교함. 
@@ -472,7 +475,7 @@ void refDeque() {
 	empty() : 덱이 비어있음면 true, 아니면 false를 return
 	front() : 맨 처음 원소 return
 	back() : 맨 마지막 원소 return
-	clear() : 덱 내부 내용 삭제. O(N) N은 inserted 될 값의 갯수
+	clear() : 덱 내부 내용 삭제. O(N) N은 deque size
 	insert() : 특정 위치에 값 삽입. O(N)
 	begin() : 덱 시작 위치(반복자 형식) 리턴
 	end() : 덱 마지막 위치의 다음 위치(반복자 형식) 리턴
@@ -519,9 +522,11 @@ void refPriority_Queue() {
 	}cout << "\n\n";
 
 	//오름차순으로 만드는 방법 1
+	//sort의 greater<int>() : 내림차순, pq의 greater<int> : 오름차순(인자의 오른쪽이 기준이기 때문임)
+	//두 번째 인자의 vector<int>는 힙을 구현할 수 있는 구현체를 의미하는 부분
 	priority_queue <int, vector<int>, greater<int> > pq2 ;
 	//방법 2
-	priority_queue <int, vector<int> > pq3;
+	priority_queue <int> pq3;
 	pq2.push(10); pq2.push(20); pq2.push(1);
 	pq3.push(-10); pq3.push(-20); pq3.push(-1); // 곱하기 -1을 해줌.
 	while (!pq2.empty()) {
@@ -556,7 +561,7 @@ void refMap() {
 	end() : O(1)
 	empty() : O(1)
 	size() : O(1)
-	at() : 함수에 넘긴 값과 같은 값을 가진 키의 Value 참조자를 리턴.(아래 사용 예시 확인) O(logN)
+	at() : 함수에 넘긴 값과 같은 값을 가진 키의 요소를 접근, 범위 검사를 진행하기 때문에 [idx] 접근보다 안전함. O(logN)
 	insert() : Key랑 Value pair 형식으로 자료구조에 삽입. At most O(logN)
 	erase() : Key를 넘기든, 반복자를 넘기든, 반복자 범위를 넘겨서 해당하는 Key 삭제. O(1) ~ O(N)
 	clear() : map에 있는 모든 elements 다 삭제하고 사이즈를 0으로 바꿈. O(N)
