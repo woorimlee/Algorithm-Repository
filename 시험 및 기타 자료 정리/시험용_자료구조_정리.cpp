@@ -37,7 +37,7 @@ void refSet();
 int main() {
 	//refStruct();
 	//refString();
-	//refVector();
+	refVector();
 	//refPair();
 	//refTuple();
 	//refStack();
@@ -124,13 +124,13 @@ void refString() {
 	cout << "3. 리사이즈\n";
 	s4.resize(len - 2);
 	cout << s4 << "\n";
-	s4.resize(s4.size() + 2, '+'); //사이즈를 늘려서 거기에 어떤 문자를 채움
+	s4.resize(size(s4) + 2, '+'); //사이즈를 늘려서 거기에 어떤 문자를 채움
 	cout << s4 << "\n\n";
 
 	cout << "4. clear & empty\n";
 	s4.clear();
 	if (s4.empty()) {
-		cout << "s4는 비어있다.\n\n";
+		cout << "s4는 비어있다, 사이즈 : " << s4.size()  << "\n\n";
 	}
 	
 	cout << "5. front & back\n";
@@ -165,6 +165,7 @@ void refVector() {
 	자주 쓰는 함수
 	대부분의 경우 O(1)
 	push_back() : 벡터에 값을 넣는 함수
+	emplace_back() : 가변인자 템플릿을 사용하여 객체 생성에 필요한 인자만 받은 후 함수 내에서 객체를 생성해 삽입
 	pop_back() : 벡터 마지막에 있는 값 삭제
 	size() : vector 크기를 return
 	resize() : 벡터의 사이즈를 변경. O(N)
