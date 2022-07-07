@@ -56,7 +56,7 @@ int make_password(string word, int count) {
 	//   (바로 abcf 출력 후 abc 상태로 다시 돌아오면 make_paseword("abc", count + 1) 이 진행되는데, count는 6이 되면 안 된다.)
 
 	return 0;
-}
+} 
 
 int main(void) {
 	cin >> L >> C;
